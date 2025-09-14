@@ -6,9 +6,11 @@
 
 html,
 body {
-  width: 40em;
+  max-width: 40em;
+  min-width: 35em;
   margin: 0 auto;
   font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1.1em;
 }
 
 
@@ -64,5 +66,5 @@ header {
 }
 
 .date {
-  font-size: 14px;
+  font-size: .8em;
 }
