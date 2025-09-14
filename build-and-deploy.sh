@@ -3,12 +3,6 @@ set -e
 
 git pull
 
-cd src/client
-
-npm run build
-
-cd ../..
-
 # Build the project in release mode
 echo "Building the project in release mode..."
 cargo build --release
