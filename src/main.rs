@@ -2,40 +2,53 @@ use std::net::SocketAddr;
 
 use anyhow;
 use axum::{
-    http::{header, StatusCode, Uri},
+    extract::Path,
+    http::{header, StatusCode},
     response::{IntoResponse, Response},
     routing::get,
     Router,
 };
 use rust_embed::Embed;
+use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    tracing_subscriber::registry()
+        .with(
+            tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| {
+                format!("{}=debug,tower_http=debug", env!("CARGO_CRATE_NAME")).into()
+            }),
+        )
+        .with(tracing_subscriber::fmt::layer())
+        .init();
     let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
 
     let listener = tokio::net::TcpListener::bind(addr).await?;
-    let app: Router<()> = Router::new().route("/", get(home_handler));
+    let app: Router<()> = Router::new()
+        .route("/", get(home_handler))
+        .route("/{*path}", get(any_file_handler));
 
-    let addr = listener.local_addr()?;
-
-    println!("listening on {addr}");
+    tracing::debug!("listening on {}", listener.local_addr().unwrap());
     _ = axum::serve(listener, app).await;
 
     Ok(())
 }
 
 async fn home_handler() -> impl IntoResponse {
-    static_handler("/home.html".parse::<Uri>().unwrap()).await
+    static_mapper("index.html".into()).await
 }
 
-async fn static_handler(uri: Uri) -> impl IntoResponse {
-    let path = uri.path().trim_start_matches('/').to_string();
+async fn any_file_handler(Path(uri): Path<String>) -> impl IntoResponse {
+    static_mapper(uri).await
+}
 
-    StaticFile(path)
+async fn static_mapper(uri: String) -> impl IntoResponse {
+    tracing::info!("{uri} accessed");
+    StaticFile(uri)
 }
 
 #[derive(Embed)]
-#[folder = "src/html/"]
+#[folder = "src/assets/"]
 struct Asset;
 
 pub struct StaticFile<T>(pub T);

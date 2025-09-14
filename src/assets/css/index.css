@@ -1,0 +1,47 @@
+:root {
+  background-color: #181824;
+  color: #ffffff;
+  place-items: center;
+}
+
+html,
+body {
+  min-width: 40em;
+  margin: 0 auto;
+}
+
+
+a {
+  color: #61afef;
+  text-decoration: none;
+}
+
+p {
+  color: #a7aeba;
+}
+
+h1 {
+  color: #d19a66;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav {
+  display: flex;
+}
+
+.main {
+  background-color: #31353f;
+}
+
+.my-name-link {
+  color: #d19a66;
+}
+
+#content {
+  background-color: #31353f;
+  height: 100%;
+}
