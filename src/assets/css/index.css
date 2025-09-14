@@ -6,17 +6,30 @@
 
 html,
 body {
-  min-width: 40em;
+  width: 40em;
   margin: 0 auto;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 
-a {
+a:link {
   color: #61afef;
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #616fef;
+}
+
 p {
+  color: #a7aeba;
+}
+
+span {
   color: #a7aeba;
 }
 
@@ -24,13 +37,22 @@ h1 {
   color: #d19a66;
 }
 
+h2 {
+  color: #a7aeba;
+}
+
 header {
   display: flex;
   justify-content: space-between;
+  border-bottom: 2px solid #31353f;
+  padding-bottom: 4px;
 }
 
 .nav {
   display: flex;
+  list-style: none;
+  justify-content: space-between;
+  gap: 0.5em 1em;
 }
 
 .main {
@@ -38,10 +60,9 @@ header {
 }
 
 .my-name-link {
-  color: #d19a66;
+  color: #d19a66 !important;
 }
 
-#content {
-  background-color: #31353f;
-  height: 100%;
+.date {
+  font-size: 14px;
 }
