@@ -40,7 +40,7 @@ async fn home_handler() -> impl IntoResponse {
 
 async fn any_file_handler(Path(uri): Path<String>) -> impl IntoResponse {
     let uri = if uri.ends_with("/") {
-        format!("{}/{}", uri, "index.html")
+        format!("{}{}", uri, "index.html")
     } else {
         uri
     };
