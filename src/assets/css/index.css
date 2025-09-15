@@ -6,11 +6,17 @@
 
 html,
 body {
+  width: 100%;
   max-width: 40em;
-  min-width: 35em;
   margin: 0 auto;
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1.1em;
+}
+
+main {
+  padding: 1em;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -46,15 +52,20 @@ h2 {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 2px solid #31353f;
-  padding-bottom: 4px;
+  padding: 1em;
 }
 
 .nav {
   display: flex;
   list-style: none;
   justify-content: space-between;
-  gap: 0.5em 1em;
+  gap: 0.5em 0.5em;
+}
+
+.nav-item {
+  font-size: large;
 }
 
 .main {
