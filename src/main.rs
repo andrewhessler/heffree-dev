@@ -1,76 +1,52 @@
-use std::net::SocketAddr;
+use std::fs;
 
-use anyhow;
-use axum::{
-    extract::Path,
-    http::{header, StatusCode},
-    response::{IntoResponse, Response},
-    routing::get,
-    Router,
-};
-use rust_embed::Embed;
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+use walkdir::WalkDir;
 
-#[tokio::main]
-async fn main() -> anyhow::Result<()> {
-    tracing_subscriber::registry()
-        .with(
-            tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| {
-                format!("{}=debug,tower_http=debug", env!("CARGO_CRATE_NAME")).into()
-            }),
-        )
-        .with(tracing_subscriber::fmt::layer())
-        .init();
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
+const ASSETS_DIRECTORY: &str = "./src/assets";
+const TARGET_DIRECTORY: &str = "./dist";
 
-    let listener = tokio::net::TcpListener::bind(addr).await?;
-    let app: Router<()> = Router::new()
-        .route("/", get(home_handler))
-        .route("/{*path}", get(any_file_handler));
+fn main() -> anyhow::Result<()> {
+    for entry in WalkDir::new(format!("{ASSETS_DIRECTORY}"))
+        .into_iter()
+        .filter_map(|e| e.ok())
+    {
+        println!("{:?}", entry.path());
+        if entry.path().extension().is_some_and(|v| v == "md") {
+            let markdown = fs::read_to_string(entry.path()).expect("file to be readable");
+            let html = markdown::to_html_with_options(&markdown, &markdown::Options::gfm())
+                .map_err(|e| anyhow::anyhow!(e))?;
 
-    tracing::debug!("listening on {}", listener.local_addr().unwrap());
-    _ = axum::serve(listener, app).await;
+            let file_sub_path = entry.path().strip_prefix(ASSETS_DIRECTORY)?;
+            let dist_mirror = format!(
+                "{TARGET_DIRECTORY}/{}",
+                file_sub_path.parent().unwrap().to_str().unwrap()
+            );
 
-    Ok(())
-}
+            fs::create_dir_all(&dist_mirror)?;
+            fs::write(
+                format!(
+                    "{dist_mirror}/{}.html",
+                    entry.path().file_stem().unwrap().to_string_lossy()
+                ),
+                html,
+            )?;
+        }
 
-async fn home_handler() -> impl IntoResponse {
-    static_mapper("index.html".into()).await
-}
+        if entry.path().extension().is_some_and(|v| {
+            ["css", "html", "pdf", "svg"]
+                .iter()
+                .any(|c| *c == v.to_str().unwrap())
+        }) {
+            let file_sub_path = entry.path().strip_prefix(ASSETS_DIRECTORY)?;
+            let dist_mirror_parent = format!(
+                "{TARGET_DIRECTORY}/{}",
+                file_sub_path.parent().unwrap().to_str().unwrap()
+            );
+            let dist_mirror = format!("{TARGET_DIRECTORY}/{}", file_sub_path.to_str().unwrap());
 
-async fn any_file_handler(Path(uri): Path<String>) -> impl IntoResponse {
-    let uri = if uri.ends_with("/") {
-        format!("{}{}", uri, "index.html")
-    } else {
-        uri
-    };
-    static_mapper(uri).await
-}
-
-async fn static_mapper(uri: String) -> impl IntoResponse {
-    tracing::info!("{uri} accessed");
-    StaticFile(uri)
-}
-
-#[derive(Embed)]
-#[folder = "src/assets/"]
-struct Asset;
-
-pub struct StaticFile<T>(pub T);
-
-impl<T> IntoResponse for StaticFile<T>
-where
-    T: Into<String>,
-{
-    fn into_response(self) -> Response {
-        let path = self.0.into();
-
-        match Asset::get(path.as_str()) {
-            Some(content) => {
-                let mime = mime_guess::from_path(path).first_or_octet_stream();
-                ([(header::CONTENT_TYPE, mime.as_ref())], content.data).into_response()
-            }
-            None => (StatusCode::NOT_FOUND, "404 Not Found").into_response(),
+            fs::create_dir_all(&dist_mirror_parent)?;
+            fs::copy(entry.path().to_str().unwrap(), dist_mirror)?;
         }
     }
+    Ok(())
 }
