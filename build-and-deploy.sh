@@ -7,7 +7,7 @@ cargo install --path ./
 
 heffree-dev
 
-cp -r ./src/assets/* /var/lib/heffree-dev/
+cp -r ./dist/* /var/lib/heffree-dev/
 
 sudo systemctl reload nginx
 
