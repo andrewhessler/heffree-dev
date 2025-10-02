@@ -1,6 +1,3 @@
-<!-- 
-Title: heffree.dev
--->
 # About Me
 Hey there! Welcome to my personal site.
 
