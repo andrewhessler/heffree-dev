@@ -29,8 +29,10 @@ pub fn process_assets() -> anyhow::Result<()> {
 
             fs::create_dir_all(&dist_mirror)?;
 
-            let html =
-                handlebars.render("layout", &json!({"content": content, "title": "Default"}))?;
+            let html = handlebars.render(
+                "layout",
+                &json!({"content": content, "title": "heffree.dev"}),
+            )?;
             let html_2 = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
 
             fs::write(
