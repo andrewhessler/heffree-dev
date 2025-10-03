@@ -1,3 +1,3 @@
 My personal site
 
-Hosted at - [heffree.dev](https://heffree.dev/)
+Hosted at [heffree.dev](https://heffree.dev/)
