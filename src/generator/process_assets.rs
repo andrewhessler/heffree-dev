@@ -1,4 +1,7 @@
-use std::fs::{self};
+use std::{
+    collections::HashMap,
+    fs::{self},
+};
 
 use handlebars::Handlebars;
 use serde_json::json;
@@ -18,7 +21,12 @@ pub fn process_assets() -> anyhow::Result<()> {
     {
         if entry.path().extension().is_some_and(|v| v == "md") {
             let markdown = fs::read_to_string(entry.path()).expect("file to be readable");
-            let content = markdown::to_html_with_options(&markdown, &markdown::Options::gfm())
+            let (meta, meat) = markdown
+                .split_once("-->")
+                .expect("metadata comment to exist");
+            let mut metadata = parse_metadata(meta);
+
+            let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
                 .map_err(|e| anyhow::anyhow!(e))?;
 
             let file_sub_path = entry.path().strip_prefix(ASSETS_DIRECTORY)?;
@@ -29,10 +37,15 @@ pub fn process_assets() -> anyhow::Result<()> {
 
             fs::create_dir_all(&dist_mirror)?;
 
-            let html = handlebars.render(
-                "layout",
-                &json!({"content": content, "title": "heffree.dev"}),
-            )?;
+            metadata.entry("content".into()).or_insert_with(|| content);
+            // metadata default
+            metadata
+                .entry("title".into())
+                .or_insert_with(|| "heffree.dev".into());
+
+            // first pass to apply metadata and insert content
+            let html = handlebars.render("layout", &metadata)?;
+            // second pass to populate content values
             let html_2 = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
 
             fs::write(
@@ -61,4 +74,17 @@ pub fn process_assets() -> anyhow::Result<()> {
         }
     }
     Ok(())
+}
+
+/// Parses a collection of string slices by separating them into key-value pairs separated by a ":"
+fn parse_metadata(metadata: &str) -> HashMap<String, String> {
+    let mut map: HashMap<String, String> = HashMap::new();
+    for line in metadata.lines() {
+        if line.contains(":") {
+            let (key, value) = line.split_once(":").expect("contains to work right?");
+            map.entry(key.to_string())
+                .or_insert_with(|| value.trim().to_string());
+        }
+    }
+    map
 }
