@@ -23,7 +23,7 @@ pub fn process_assets() -> anyhow::Result<()> {
             let markdown = fs::read_to_string(entry.path()).expect("file to be readable");
             let (meta, meat) = markdown
                 .split_once("-->")
-                .expect("metadata comment to exist");
+                .unwrap_or_else(|| ("", &markdown));
             let mut metadata = parse_metadata(meta);
 
             let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
