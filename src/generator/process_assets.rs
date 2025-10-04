@@ -23,7 +23,7 @@ pub fn process_assets() -> anyhow::Result<()> {
     let mut posts_for_index: Vec<PostMetadata> = vec![];
 
     handlebars.register_template_file("layout", "./src/templates/layout.hbs")?;
-    handlebars.register_template_file("bliki-index", "./src/templates/bliki-index.hbs")?;
+    handlebars.register_template_file("blog-index", "./src/templates/blog-index.hbs")?;
     handlebars.register_partial("indent", "{{{content}}}")?; // this is weird, but it works https://github.com/sunng87/handlebars-rust/issues/691
 
     for entry in WalkDir::new(format!("{ASSETS_DIRECTORY}"))
@@ -131,7 +131,7 @@ fn gen_bliki_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> Stri
     posts.sort_by(|p1, p2| p2.date.cmp(&p1.date));
     let content = handlebars
         .render(
-            "bliki-index",
+            "blog-index",
             &json!({
                 "posts": posts,
             }),

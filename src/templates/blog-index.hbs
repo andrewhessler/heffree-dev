@@ -1,0 +1,6 @@
+<h1>Blog Entries</h1>
+<ul class="blog-index">
+{{#each posts}}
+  <li><a href="./{{this.path}}.html">{{this.title}}</a>{{#if this.desc}}&mdash;{{this.desc}}{{/if}}<span class="date"> - {{this.date}}</span></li>
+{{/each}}
+</ul>
