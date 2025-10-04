@@ -1,0 +1,6 @@
+<h1>Blog Entries</h1>
+<ul>
+{{#each posts}}
+  <li><a href="./{{this.path}}.html">{{this.title}}</a><span class="date"> - {{this.date}}</span></li>
+{{/each}}
+</ul>

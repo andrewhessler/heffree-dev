@@ -4,15 +4,26 @@ use std::{
 };
 
 use handlebars::Handlebars;
+use serde::Serialize;
 use serde_json::json;
 use walkdir::WalkDir;
 
 const ASSETS_DIRECTORY: &str = "./src/assets";
 const TARGET_DIRECTORY: &str = "./dist";
 
+#[derive(Serialize)]
+struct PostMetadata {
+    path: String,
+    title: String,
+    date: String,
+}
+
 pub fn process_assets() -> anyhow::Result<()> {
     let mut handlebars = Handlebars::new();
+    let mut posts_for_index: Vec<PostMetadata> = vec![];
+
     handlebars.register_template_file("layout", "./src/templates/layout.hbs")?;
+    handlebars.register_template_file("blog-index", "./src/templates/blog-index.hbs")?;
     handlebars.register_partial("indent", "{{{content}}}")?; // this is weird, but it works https://github.com/sunng87/handlebars-rust/issues/691
 
     for entry in WalkDir::new(format!("{ASSETS_DIRECTORY}"))
@@ -25,6 +36,26 @@ pub fn process_assets() -> anyhow::Result<()> {
                 .split_once("-->")
                 .unwrap_or_else(|| ("", &markdown));
             let mut metadata = parse_metadata(meta);
+
+            // populate post metadata for building the index
+            if entry.path().to_string_lossy().contains("posts") {
+                posts_for_index.push(PostMetadata {
+                    path: entry
+                        .path()
+                        .file_stem()
+                        .expect("file stem")
+                        .to_string_lossy()
+                        .to_string(),
+                    title: metadata
+                        .get("title")
+                        .expect("title to exist for post")
+                        .to_string(),
+                    date: metadata
+                        .get("date")
+                        .expect("date to exist for post")
+                        .to_string(),
+                });
+            }
 
             let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
                 .map_err(|e| anyhow::anyhow!(e))?;
@@ -73,6 +104,9 @@ pub fn process_assets() -> anyhow::Result<()> {
             fs::copy(entry.path().to_str().unwrap(), dist_mirror)?;
         }
     }
+
+    let blog_index = gen_blog_index(posts_for_index, handlebars);
+    fs::write(format!("{TARGET_DIRECTORY}/blog/index.html"), blog_index)?;
     Ok(())
 }
 
@@ -87,4 +121,27 @@ fn parse_metadata(metadata: &str) -> HashMap<String, String> {
         }
     }
     map
+}
+
+fn gen_blog_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> String {
+    posts.sort_by(|p1, p2| p2.date.cmp(&p1.date));
+    let content = handlebars
+        .render(
+            "blog-index",
+            &json!({
+                "posts": posts,
+            }),
+        )
+        .expect("index to render");
+
+    let index = handlebars
+        .render(
+            "layout",
+            &json!({
+                "content": content,
+            }),
+        )
+        .expect("index to render in layout");
+
+    index
 }
