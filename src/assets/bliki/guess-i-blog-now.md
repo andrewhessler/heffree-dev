@@ -1,5 +1,6 @@
 <!--
 title: Time to start blogging!
+desc: Opening dialogue
 date: 2025-09-25
 author: Andrew Hessler
 -->

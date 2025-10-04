@@ -23,7 +23,7 @@ pub fn process_assets() -> anyhow::Result<()> {
     let mut posts_for_index: Vec<PostMetadata> = vec![];
 
     handlebars.register_template_file("layout", "./src/templates/layout.hbs")?;
-    handlebars.register_template_file("blog-index", "./src/templates/blog-index.hbs")?;
+    handlebars.register_template_file("bliki-index", "./src/templates/bliki-index.hbs")?;
     handlebars.register_partial("indent", "{{{content}}}")?; // this is weird, but it works https://github.com/sunng87/handlebars-rust/issues/691
 
     for entry in WalkDir::new(format!("{ASSETS_DIRECTORY}"))
@@ -38,7 +38,11 @@ pub fn process_assets() -> anyhow::Result<()> {
             let mut metadata = parse_metadata(meta);
 
             // populate post metadata for building the index
-            if entry.path().to_string_lossy().contains("posts") {
+            if entry
+                .path()
+                .parent()
+                .is_some_and(|parent| parent.to_string_lossy().contains("bliki"))
+            {
                 posts_for_index.push(PostMetadata {
                     path: entry
                         .path()
@@ -105,8 +109,8 @@ pub fn process_assets() -> anyhow::Result<()> {
         }
     }
 
-    let blog_index = gen_blog_index(posts_for_index, handlebars);
-    fs::write(format!("{TARGET_DIRECTORY}/blog/index.html"), blog_index)?;
+    let bliki_index = gen_bliki_index(posts_for_index, handlebars);
+    fs::write(format!("{TARGET_DIRECTORY}/bliki/index.html"), bliki_index)?;
     Ok(())
 }
 
@@ -123,11 +127,11 @@ fn parse_metadata(metadata: &str) -> HashMap<String, String> {
     map
 }
 
-fn gen_blog_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> String {
+fn gen_bliki_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> String {
     posts.sort_by(|p1, p2| p2.date.cmp(&p1.date));
     let content = handlebars
         .render(
-            "blog-index",
+            "bliki-index",
             &json!({
                 "posts": posts,
             }),
