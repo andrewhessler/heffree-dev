@@ -79,3 +79,8 @@ header {
 .date {
   font-size: .8em;
 }
+
+.blog-date {
+  font-size: .8em;
+  float: right;
+}
