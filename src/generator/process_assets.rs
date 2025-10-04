@@ -15,6 +15,7 @@ const TARGET_DIRECTORY: &str = "./dist";
 struct PostMetadata {
     path: String,
     title: String,
+    desc: Option<String>,
     date: String,
 }
 
@@ -50,6 +51,7 @@ pub fn process_assets() -> anyhow::Result<()> {
                         .expect("file stem")
                         .to_string_lossy()
                         .to_string(),
+                    desc: metadata.get("desc").cloned(),
                     title: metadata
                         .get("title")
                         .expect("title to exist for post")
