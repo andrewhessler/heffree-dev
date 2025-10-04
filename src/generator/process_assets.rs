@@ -145,6 +145,7 @@ fn gen_bliki_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> Stri
             "layout",
             &json!({
                 "content": content,
+                "title": "Blikidex"
             }),
         )
         .expect("index to render in layout");
