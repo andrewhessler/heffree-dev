@@ -80,6 +80,16 @@ pub fn process_assets() -> anyhow::Result<()> {
                 .entry("title".into())
                 .or_insert_with(|| "heffree.dev".into());
 
+            if entry
+                .path()
+                .to_string_lossy()
+                .contains(&format!("{ASSETS_DIRECTORY}/index.md"))
+            {
+                metadata
+                    .entry("home".into())
+                    .or_insert_with(|| "exists".into());
+            }
+
             // first pass to apply metadata and insert content
             let html = handlebars.render("layout", &metadata)?;
             // second pass to populate content values
@@ -95,7 +105,7 @@ pub fn process_assets() -> anyhow::Result<()> {
         }
 
         if entry.path().extension().is_some_and(|v| {
-            ["css", "html", "pdf", "svg", "jpg"]
+            ["css", "html", "pdf", "svg", "jpg", "png"]
                 .iter()
                 .any(|c| *c == v.to_str().unwrap())
         }) {

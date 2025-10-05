@@ -57,6 +57,7 @@ header {
   padding: 1em;
 }
 
+/* home/layout stuff */
 .nav {
   display: flex;
   list-style: none;
@@ -78,6 +79,10 @@ header {
 
 .blog-date {
   font-size: .8em;
+  float: right;
+}
+
+.tiny-me {
   float: right;
 }
 
