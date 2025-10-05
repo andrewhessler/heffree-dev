@@ -33,20 +33,16 @@ a:visited {
   color: #616fef;
 }
 
-p {
-  color: #a7aeba;
-}
-
-span {
+p,
+span,
+ul,
+li,
+h2 {
   color: #a7aeba;
 }
 
 h1 {
   color: #d19a66;
-}
-
-h2 {
-  color: #a7aeba;
 }
 
 header {
