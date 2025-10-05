@@ -10,7 +10,9 @@ I created this blog for a few reasons:
 - I'd love to get feedback on both my programming and writing.
 - It's really a place for me to rubber duck and debrief, but I hope it can entertain and maybe even help others.
 
-The rest of the personal site is there to direct people to my socials and stuff. I thought I would end up hosting some webapps on the same domain, but I'm not sure that'll be happening. I host another personal site on the same Linode pod that my wife and I use for little throwaway tools.
+The rest of the personal site is there to direct people to my socials and stuff. I thought I would end up hosting some webapps on the same domain, but I'm not sure that'll be happening. On the same Linode pod, I host another personal site that my wife and I use for little throwaway tools.
+
+Anyway, let's get into it!
 
 ## Technical Evolution
 
