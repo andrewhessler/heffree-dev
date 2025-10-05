@@ -34,9 +34,9 @@ I also don't really need any APIs, so why have the webserver at all? Nginx is a 
 ### Where's the Rust?
 But how can I live up to the Rust developer stereotypes if I don't try and shoehorn Rust into every project I ever touch?
 
-Before I even got to work on my first real post, I was already getting frustrated with continuously find-and-replacing the nav — and that's on like 7 files. I deleted and readded the blog link every other day depending on how silly I felt just having a placeholder entry.
+Before I even got to work on my first real post, I was already getting frustrated with continuously find-and-replacing the nav — and that's on like 7 files. I deleted and readded the blog link every other day depending on how silly I felt having only a placeholder entry.
 
-I've been following [Armin Ronacher](https://lucumr.pocoo.org/) recently to observe his LLM playground. I'm pretty bearish on LLMs, but he seems like the person to keep an eye on if any breakthroughs do happen. Tangentially, I also know one of the things he's well-known for is the templating engine Jinja2 &mdash; but I don't want to use Python, I want to use Rust. I did browse his [public source personal site](https://github.com/mitsuhiko/lucumr) for inspiration, though.
+I've been following [Armin Ronacher](https://lucumr.pocoo.org/) recently to observe his LLM playground. I'm pretty bearish on LLMs (from my personal experiences with them), but he seems like the person to keep an eye on if any breakthroughs do happen. Tangentially, I also know one of the things he's well-known for is the templating engine Jinja2 &mdash; but I don't want to use Python, I want to use Rust. I did browse his [public source personal site](https://github.com/mitsuhiko/lucumr) for inspiration, though.
 
 I also don't want to make my own templating engine, that's just not what I want to work on right now. Instead I reached for [handlebars](https://handlebarsjs.com/), but the Rust [manifestation](https://crates.io/crates/handlebars). Handlebars is something I've used, I just really can't remember when, which means it must've been at my first job or in college. All I remember is a lot of mustache discussion, which I'm incapable of growing.
 
@@ -44,7 +44,7 @@ Thus the webserver transformed into a static site generator.
 ### Obsidian
 Both the aesthetic design and technical implementation are motivated by my use of Obsidian. I wanted most of my site to be able to exist as markdown files and be rendered to html. There's a [rust crate](https://crates.io/crates/markdown) for that!
 
-I've come to peace with my wonton importing of dependencies. I'm up to a total of 6 (and of course what they rely on); I'd argue `anyhow`, `serde`, and `walkdir` hardly count, but oh well. I'm a little sad about the potentially missed learning opportunities, but I can always go back. I'm going to continue to focus on the things that I see value in.
+I've come to peace with my wanton importing of dependencies. I'm up to a total of 6 (and of course what they rely on); I'd argue `anyhow`, `serde`, and `walkdir` hardly count, but oh well. I'm a little sad about the potentially missed learning opportunities, but I can always go back. I'm going to continue to focus on the things that I see value in.
 
 ### Implementation Wrap-up
 That's where I'm at now:
@@ -56,22 +56,22 @@ That's where I'm at now:
 
 The public source can be found [here](https://github.com/andrewhessler/heffree-dev). I'll update the README with the nginx config. The nginx config started out pretty simple, but definitely got simpler after I stopped using it as a proxy.
 
-I do some silly things, it's not structured well, but that's the benefit of building for yourself. I do multiple layers of template rendering, which interestingly is kind of similar to what we do at my current job with our Helm templating.
+I do some silly things with the generator. It's not structured well, but that's the benefit of building for yourself. I do multiple layers of template rendering, which interestingly is kind of similar to what we do at my current job with our Helm templating.
 
 It was really satisfying to recognize some obvious over-engineering. And that over-engineering might even be valid for someone else's vision, it's really just about the tradeoffs. I might be over-engineered for someone else's vision. I just struggle to determine if any implementation is correct. Are all working implementations correct? I think yes. I also think depending on the context there can be **more correct** implementations.
 
 I guess I feel better saying it was really satisfying to recognize such a distinct alternative architecture.
 
 ## Design
-As I mentioned before, one of my driving inspirations was Obsidian. I like the compressed area in the middle and it fits mobile well. I personally like the styling I have in Obsidian, but I think some people might see it as overkill.
+As I mentioned earlier, one of my driving inspirations was Obsidian. I like the compressed area in the middle and it fits mobile well. I personally like the styling I have in Obsidian, but I think some people might see it as overkill. I may start to leak more of it into the site as time goes on.
 
-So, for my second inspiration, I decided to use some toned down colors from my terminal colorschemes. The background of the site is the exact color of my terminal background, but the orange and cyan are adjacent to my tmux window split colors (X11 orange and cyan). They're pretty Portal inspired, but not the exact hexcodes.
+For my second inspiration, I decided to use some toned down colors from my terminal colorschemes. The background of the site is the exact color of my terminal background, but the orange and cyan are adjacent to my tmux window split colors (X11 orange and cyan). They're pretty Portal inspired, but not the exact hexcodes.
 
 Additional inspiration includes:
 - My nav looks egregiously similar to [Colton Voege's](https://colton.dev/), but maybe we can all just agree there's only so many ways to layout 5 elements and a horizontal rule/bottom border...
 - [Armin's blog](https://lucumr.pocoo.org/), as I mentioned.
 - I noticed Martin Fowler calls [his blog](https://martinfowler.com/bliki/) a "bliki", so I named my route bliki as an homage. My wife informed me this is also slang for a gun nowadays. My actual content continues to reference it as a blog.
-- I also really like [Nolen Royalty's](https://eieio.games/blog/) EIEIO blog, I intend to eventually do something similar to him where my less relevant thoughts can be tossed off to the side; maybe simply by rendering my markdown that exists in parentheses.
+- I also really like [Nolen Royalty's](https://eieio.games/blog/) EIEIO blog, I intend to eventually do something similar to him where my less relevant thoughts can be tossed off to the side; maybe anything that exists in parentheses.
 - I enjoy the simplicity of [Nikhil Suresh's blog](https://ludic.mataroa.blog/) and I also now realize at one point my blog index looked identical to his, unintentionally.
 - Honorable mentions: [Yossi Kreinin's blog](https://www.yosefk.com/blog/) and [Yoshua Wuyts' blog](https://blog.yoshuawuyts.com/)
 
