@@ -25,16 +25,16 @@ I've been using a pretty consistent stack since I started [Planning Poker](./pro
 - React client (embedded in the webserver executable)
 - Sqlite DB
 
-And that's how this blog started as well. My Rust webserver both serves API routes and the files for the React client.
+And that's how this blog started as well. My Rust webserver serves both API routes and the files for the React client.
 
-With this being just a simple blog, I immediately wanted to drop the React part and there was just never any reason for a DB in my vision. I figured I'd just host some static files from my webserver and leave it at that. 
+With this being just a simple blog, I immediately wanted to drop the React part and I have no current intentions of using a DB. I figured I'd just host some static files from my webserver and leave it at that. 
 
 I also don't really need any APIs, so why have the webserver at all? Nginx is a perfectly acceptable webserver, so I'll just use that. I may regret this a little as I think tracing might be a bit simpler if I had a personal webserver to tweak programmatically, but I'm also not pressed about it.
 
 ### Where's the Rust?
 But how can I live up to the Rust developer stereotypes if I don't try and shoehorn Rust into every project I ever touch?
 
-Before I even got to work on my first real post, I was already getting frustrated with continuously find-and-replacing the nav ;mdash& and that's on like 7 files. I deleted and readded the blog link every other day depending on how silly I felt just having a placeholder entry.
+Before I even got to work on my first real post, I was already getting frustrated with continuously find-and-replacing the nav — and that's on like 7 files. I deleted and readded the blog link every other day depending on how silly I felt just having a placeholder entry.
 
 I've been following [Armin Ronacher](https://lucumr.pocoo.org/) recently to observe his LLM playground. I'm pretty bearish on LLMs, but he seems like the person to keep an eye on if any breakthroughs do happen. Tangentially, I also know one of the things he's well-known for is the templating engine Jinja2 &mdash; but I don't want to use Python, I want to use Rust. I did browse his [public source personal site](https://github.com/mitsuhiko/lucumr) for inspiration, though.
 
