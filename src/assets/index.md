@@ -12,3 +12,5 @@ I primarily use TypeScript and C# for my professional full-stack work.
 
 I've been messing around with mainly Rust since the beginning of 2024. 
 Before that I hadn't really created a ton in public, at least not software. Anyway, you can see what that's amounted to on my Github.
+
+[More about me](./bliki/about-me-continued.md)
