@@ -13,7 +13,7 @@ Agile Ante is my incarnation of planning poker. Planning poker is a way of gamif
 
 My team had been moving from planning poker site to planning poker site, mostly because all of them introduced some sort of paywall to have more than 5 tickets a day. It was generally a meme around the domain that we should make our own.
 
-One week, we ended up having a hackathon. Our goal, we decided, was to teach our BA some coding and so we used planning poker as the goal. We got almost nowhere, but we had fun and the BA learned a little more about what we do.
+One week, we ended up having a hackathon. Our goal, we decided, was to teach our BA some coding and so we used planning poker as the teaching medium. We got almost nowhere, but we had fun and the BA learned a little more about what we do.
 
 Fast forward a couple months and I decide I want to actually do it. I'll make the thing. By this point we had actually found [Kollabe](https://kollabe.com/) which is pretty fantastic and meets all of our needs. I thought "I'll create something that makes sure Kollabe stays fantastic", as a threat I guess?
 
@@ -57,7 +57,7 @@ Here's my remaining todo list:
 - [ ] General polish
 
 ## Simulation Testing
-What I'm most proud of from this project is the simulation testing. I've played around with [TigerBeetle's Simulation](https://sim.tigerbeetle.com/) and have wanted to do setup data simulation at my job to mimic a live environment. This was a nice opportunity to do some of that with my auto clients. It made development a lot more enjoyable and was a great way to demo to people. Click below to see them in action!
+What I'm most proud of from this project is the simulation testing. I've played around with [TigerBeetle's Simulation](https://sim.tigerbeetle.com/) and have wanted to setup data simulation at my job to mimic a live environment. This was a nice opportunity to do some of that with my auto clients. It made development a lot more enjoyable and was a great way to demo to people. Click below to see them in action!
 
 [![Agile Ante Demo](../images/agile-ante-ss.png)](../images/agile-ante-demo.webm)
 
