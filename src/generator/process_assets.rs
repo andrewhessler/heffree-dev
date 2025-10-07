@@ -105,7 +105,7 @@ pub fn process_assets() -> anyhow::Result<()> {
         }
 
         if entry.path().extension().is_some_and(|v| {
-            ["css", "html", "pdf", "svg", "jpg", "png"]
+            ["css", "html", "pdf", "svg", "jpg", "png", "webm"]
                 .iter()
                 .any(|c| *c == v.to_str().unwrap())
         }) {

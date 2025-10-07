@@ -54,6 +54,14 @@ header {
   padding: 1em;
 }
 
+li:has(input[type="checkbox"]) {
+  list-style-type: none;
+}
+
+ul:has(input[type="checkbox"]) {
+  padding: 0;
+}
+
 /* home/layout stuff */
 .nav {
   display: flex;
