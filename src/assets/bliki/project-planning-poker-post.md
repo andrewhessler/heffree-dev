@@ -4,7 +4,7 @@ desc: A recap of a project I worked on for 7 months
 date: 2025-10-06
 -->
 # Agile Ante
-It's crazy that I've been working on this for 7 months. You can find the repo here: [agile-ante](https://github.com/heffree/agile-ante)
+It's crazy that I've been working on this for 7 months — I counted and it was 43 days of those 7 months, but still. You can find the repo here: [agile-ante](https://github.com/heffree/agile-ante)
 
 It's also not done. It's functional, but I had more planned for it. I'm just not having fun with it and I want to move on to something that aligns more with my interests.
 
