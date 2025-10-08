@@ -6,9 +6,9 @@ date: 2025-10-07
 # DB Client
 Finally! This is what this blogging mini-marathon has all been for. Saying goodbye to [Planning Poker](./project-planning-poker-post.html) and welcoming in the DB Client.
 
-I've serendipitously recently watched Gavin King talk about Hibernate and the idea of a Data Access Engineer. Somewhere in between an Application Developer and a DBA.
+I've serendipitously very recently watched Gavin King [talk about Hibernate and the idea of a Data Access Engineer](https://www.youtube.com/watch?v=Qvh3VFlvJnE). Somewhere in between an Application Developer and a DBA.
 
-I've been especiialy interested in data and DB operations most of my career. Maybe because my first job involved migrating between two databases, I had a lot I needed to learn to be effective.
+I've been especially interested in data and DB operations most of my career. Maybe because my first job involved migrating between two databases, I had a lot I needed to learn to be effective.
 
 So, my goal is to make a DB Client. Azure Data Studio is going away, maybe I can fill the void. Probably not since this will probably take me 3+ years, but at least it's something I can be proud to work on as a hobby project. It will hopefully present plenty of interesting learning opportunities.
 
