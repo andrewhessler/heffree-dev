@@ -27,7 +27,7 @@ pub fn process_assets() -> anyhow::Result<()> {
     handlebars.register_template_file("blog-index", "./src/templates/blog-index.hbs")?;
     handlebars.register_partial("indent", "{{{content}}}")?; // this is weird, but it works https://github.com/sunng87/handlebars-rust/issues/691
 
-    for entry in WalkDir::new(format!("{ASSETS_DIRECTORY}"))
+    for entry in WalkDir::new(ASSETS_DIRECTORY)
         .into_iter()
         .filter_map(|e| e.ok())
     {
@@ -150,7 +150,7 @@ fn gen_bliki_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> Stri
         )
         .expect("index to render");
 
-    let index = handlebars
+    handlebars
         .render(
             "layout",
             &json!({
@@ -158,7 +158,5 @@ fn gen_bliki_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> Stri
                 "title": "Blikidex"
             }),
         )
-        .expect("index to render in layout");
-
-    index
+        .expect("index to render in layout")
 }
