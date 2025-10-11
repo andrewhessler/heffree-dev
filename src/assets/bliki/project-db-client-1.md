@@ -14,10 +14,11 @@ I also considered if I should just make my UI from scratch like [Zed](https://ze
 You see, I'm actually most stoked about Dioxus, but my biggest hangup is that it's just more HTML and CSS. An eternally doomed web dev is what I am. I specifically want this to be a desktop app, so it feels weird to use a web technology. On the other hand, it feels strangely responsible of me? Like it has the best chance to set me up for success.
 
 [Tauri](https://v2.tauri.app/) is also there... not sure what to think about it.
-## Rust GUI Surveey 2025
-Enter [boringcactus' Rust GUI Survey](https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html). A great resource that pretty much gave me the final push I needed to settle on Dioxus and sneer at Tauri. I'd also be interested in flexing into [[Freya]], but for now I'll just explore Dioxus. I've made my peace with using web tech and Diet Electron, add some rum and I'm good to go.
+
+## Rust GUI Survey 2025
+Enter [boringcactus' Rust GUI Survey](https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html). A great resource that pretty much gave me the final push I needed to settle on Dioxus and sneer at Tauri. I'd also be interested in flexing into [Freya](https://freyaui.dev/), but for now I'll just explore Dioxus. I've made my peace with using web tech and Diet Electron, add some rum and I'm good to go.
 
 Still interested in exploring other UI options in the future, but for now I'm gonna go ahead and commit.
 
 ## A Name!
-I still don't have a committed name for the client, but the current frontrunner is `dbrs` — pronounced De Beers — do you think I'll get sued? Runner up is `dbeerus` for a DBZ nod. I'm sure I'll think of something better eventually.
+I still don't have a definite name for the client, but the current frontrunner is `dbrs` — pronounced De Beers — do you think I'll get sued? Runner up is `dbeerus` for a DBZ nod. I'm sure I'll think of something better eventually.
