@@ -15,7 +15,7 @@ You see, I'm actually most stoked about Dioxus, but my biggest hangup is that it
 
 Tauri is also there... not sure what to think about it.
 ## Rust GUI Surveey 2025
-Enter [boringcactus' Rust GUI Survey](https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html). A great resource that pretty much gave me the final push I needed to settle on Dioxus. I'd also be interested in flexing into [[Freya]], but for now I'll just explore Dioxus. I've made my peace with using web tech and Diet Electron, add some rum and I'm good to go.
+Enter [boringcactus' Rust GUI Survey](https://www.boringcactus.com/2025/04/13/2025-survey-of-rust-gui-libraries.html). A great resource that pretty much gave me the final push I needed to settle on Dioxus and sneer at [Tauri](https://v2.tauri.app/). I'd also be interested in flexing into [[Freya]], but for now I'll just explore Dioxus. I've made my peace with using web tech and Diet Electron, add some rum and I'm good to go.
 
 Still interested in exploring other UI options in the future, but for now I'm gonna go ahead and commit.
 
