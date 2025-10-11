@@ -3,7 +3,8 @@ title: Project: DB Client - UI and Name Thoughts
 desc: No more Iced, thanks Rust GUI Survey
 date: 2025-10-10
 -->
-Let's see how this looks without a big header. I've put a bit of time into the DB Client. Mostly stressing about which UI framework I'm going to use.
+# DB Client - UI and Name Thoughts
+I've put a bit of time into the DB Client. Mostly stressing about which UI framework I'm going to use.
 
 ## So many GUI Libraries!
 I was initially going to use [Iced](https://book.iced.rs/), but I wasn't completely sold. Before I even got into the docs I ended up seeing [Jonathan Kelley's recent presentation on Dioxus](https://www.youtube.com/watch?v=Kl90J5RmPxY). I really liked the tooling around it, his general philosophy, and desire to improve the entire Rust ecosystem.
