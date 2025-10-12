@@ -10,7 +10,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 1.1em;
+  font-size: 1.1rem;
 }
 
 main {
@@ -44,6 +44,7 @@ h3 {
 
 h1 {
   color: #d19a66;
+  font-size: 1.8rem;
 }
 
 header {
@@ -83,7 +84,7 @@ ul:has(input[type="checkbox"]) {
 }
 
 .blog-date {
-  font-size: .8em;
+  font-size: .8rem;
   float: right;
 }
 
@@ -93,7 +94,7 @@ ul:has(input[type="checkbox"]) {
 
 /* blog index classes */
 .date {
-  font-size: .8em;
+  font-size: .8rem;
   color: #d19a66 !important;
 }
 
@@ -102,7 +103,7 @@ ul:has(input[type="checkbox"]) {
 }
 
 .desc {
-  font-size: .9em;
+  font-size: .9rem;
 }
 
 .entry-wrapper {
