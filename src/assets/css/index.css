@@ -47,6 +47,10 @@ h1 {
   font-size: 1.8rem;
 }
 
+h2 {
+  font-size: 1.4rem;
+}
+
 header {
   display: flex;
   justify-content: space-between;
