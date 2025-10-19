@@ -194,7 +194,7 @@ fn gen_rss(posts: &[PostMetadata]) -> String {
     <published>{pub_date}</published>
     <updated>{pub_date}</updated>
     <summary>{desc}</summary>
-    <content type="html"><![CDATA[{content}]]>
+    <content type="html"><![CDATA[{content}]]></content>
 </entry>"#
             )
         })
