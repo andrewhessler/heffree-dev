@@ -42,7 +42,7 @@ pub fn process_assets() -> anyhow::Result<()> {
             if entry
                 .path()
                 .parent()
-                .is_some_and(|parent| parent.to_string_lossy().contains("bliki"))
+                .is_some_and(|parent| parent.to_string_lossy().contains("blog"))
             {
                 posts_for_index.push(PostMetadata {
                     path: entry
