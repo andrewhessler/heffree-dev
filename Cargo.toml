@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 anyhow = "1.0.99"
+chrono = "0.4.42"
 handlebars = "6.3.2"
 markdown = "1.0.0"
 serde = { version = "1.0.228", features = ["derive"] }

@@ -3,6 +3,7 @@ use std::{
     fs::{self},
 };
 
+use chrono::{DateTime, Utc};
 use handlebars::Handlebars;
 use serde::Serialize;
 use serde_json::json;
@@ -17,6 +18,7 @@ struct PostMetadata {
     title: String,
     desc: Option<String>,
     date: String,
+    content: String,
 }
 
 pub fn process_assets() -> anyhow::Result<()> {
@@ -37,6 +39,9 @@ pub fn process_assets() -> anyhow::Result<()> {
                 .split_once("-->")
                 .unwrap_or_else(|| ("", &markdown));
             let mut metadata = parse_metadata(meta);
+
+            let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
+                .map_err(|e| anyhow::anyhow!(e))?;
 
             // populate post metadata for building the index
             if entry
@@ -60,11 +65,9 @@ pub fn process_assets() -> anyhow::Result<()> {
                         .get("date")
                         .expect("date to exist for post")
                         .to_string(),
+                    content: content.clone(),
                 });
             }
-
-            let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
-                .map_err(|e| anyhow::anyhow!(e))?;
 
             let file_sub_path = entry.path().strip_prefix(ASSETS_DIRECTORY)?;
             let dist_mirror = format!(
@@ -121,8 +124,13 @@ pub fn process_assets() -> anyhow::Result<()> {
         }
     }
 
-    let blikidex = gen_blikidex(posts_for_index, handlebars);
+    // sort posts by date desc
+    posts_for_index.sort_by(|p1, p2| p2.date.cmp(&p1.date));
+
+    let blikidex = gen_blikidex(&posts_for_index, handlebars);
+    let atom_feed = gen_rss(&posts_for_index);
     fs::write(format!("{TARGET_DIRECTORY}/blog/index.html"), blikidex)?;
+    fs::write(format!("{TARGET_DIRECTORY}/atom.xml"), atom_feed)?;
     Ok(())
 }
 
@@ -139,8 +147,7 @@ fn parse_metadata(metadata: &str) -> HashMap<String, String> {
     map
 }
 
-fn gen_blikidex(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> String {
-    posts.sort_by(|p1, p2| p2.date.cmp(&p1.date));
+fn gen_blikidex(posts: &[PostMetadata], handlebars: Handlebars) -> String {
     let content = handlebars
         .render(
             "blog-index",
@@ -159,4 +166,59 @@ fn gen_blikidex(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> String 
             }),
         )
         .expect("index to render in layout")
+}
+
+fn gen_rss(posts: &[PostMetadata]) -> String {
+    let entries: Vec<String> = posts
+        .iter()
+        .map(|post| {
+            let title = post.title.clone();
+            let url = format!("https://heffree.dev/blog/{}", post.path.clone());
+            let pub_date = DateTime::parse_from_str(
+                &format!("{} 00:00:00 +0000", post.date),
+                "%Y-%m-%d %H:%M:%S %z",
+            )
+            .expect("date to be parseable")
+            .to_rfc3339();
+            let desc = post.desc.clone().unwrap_or("".to_string());
+            let content = post.content.clone();
+
+            format!(
+                r#"<entry>
+    <title>{title}</title>
+    <id>{url}</id>
+    <link href="{url}" />
+    <author>
+        <name>Andrew Hessler</name>
+    </author>
+    <published>{pub_date}</published>
+    <updated>{pub_date}</updated>
+    <summary>{desc}</summary>
+    <content type="html"><![CDATA[{content}]]>
+</entry>"#
+            )
+        })
+        .collect();
+
+    let entries_string = entries.join("");
+
+    let now = Utc::now().to_rfc3339();
+
+    let base_url = "https://heffree.dev";
+    let rss = format!(
+        r#"<?xml version="1.0" encoding="utf-8"?>
+        <feed xmlns="http://www.w3.org/2005/Atom">
+        <title>Andrew Hessler</title>
+        <link href="{base_url}/" />
+        <link href="{base_url}/feed.atom" rel="self" />
+        <updated>{now}</updated>
+        <language>en</language>
+        <author>
+            <name>Andrew Hessler</name>
+        </author>
+        {entries_string}
+        </feed>"#
+    );
+
+    rss.to_string()
 }
