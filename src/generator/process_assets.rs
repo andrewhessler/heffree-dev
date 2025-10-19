@@ -121,8 +121,8 @@ pub fn process_assets() -> anyhow::Result<()> {
         }
     }
 
-    let bliki_index = gen_bliki_index(posts_for_index, handlebars);
-    fs::write(format!("{TARGET_DIRECTORY}/bliki/index.html"), bliki_index)?;
+    let blikidex = gen_blikidex(posts_for_index, handlebars);
+    fs::write(format!("{TARGET_DIRECTORY}/blog/index.html"), blikidex)?;
     Ok(())
 }
 
@@ -139,7 +139,7 @@ fn parse_metadata(metadata: &str) -> HashMap<String, String> {
     map
 }
 
-fn gen_bliki_index(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> String {
+fn gen_blikidex(mut posts: Vec<PostMetadata>, handlebars: Handlebars) -> String {
     posts.sort_by(|p1, p2| p2.date.cmp(&p1.date));
     let content = handlebars
         .render(
