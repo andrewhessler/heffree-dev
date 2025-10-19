@@ -59,7 +59,7 @@ Here's my remaining todo list:
 ## Simulation Testing
 What I'm most proud of from this project is the simulation testing. I've played around with [TigerBeetle's Simulation](https://sim.tigerbeetle.com/) and have wanted to setup data simulation at my job to mimic a live environment. This was a nice opportunity to do some of that with my auto clients. It made development a lot more enjoyable and was a great way to demo to people. Click below to see them in action!
 
-[![Agile Ante Demo](../images/agile-ante-ss.png)](../images/agile-ante-demo.webm)
+[![Agile Ante Demo](../images/agile-ante-thumbnail.png)](../images/agile-ante-demo.webm)
 
 ## On to the next thing
 Luckily I know what I want to work on next. I think it really aligns with not only the type of development I'm interested in, but also my favorite kind of software, and the type of "product" I want to be making. Can't wait! I'm sure it'll take years, but I'll do a little writeup on it next.
