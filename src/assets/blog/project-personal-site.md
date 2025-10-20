@@ -70,7 +70,7 @@ For my second inspiration, I decided to use some toned down colors from my termi
 Additional inspiration includes:
 - My nav looks egregiously similar to [Colton Voege's](https://colton.dev/), but maybe we can all just agree there's only so many ways to layout 5 elements and a horizontal rule/bottom border...
 - [Armin's blog](https://lucumr.pocoo.org/), as I mentioned.
-- I noticed Martin Fowler calls [his blog](https://martinfowler.com/bliki/) a "bliki", so I named my route bliki as an homage. My wife informed me this is also slang for a gun nowadays. My actual content continues to reference it as a blog.
+- I noticed Martin Fowler calls [his blog](https://martinfowler.com/bliki/) a "bliki", so I named my blog entry index "blikidex" as an homage. My wife informed me "bliky" is also slang for a gun nowadays, so that's fun. My actual content continues to reference it as a blog.
 - I also really like [Nolen Royalty's](https://eieio.games/blog/) EIEIO blog, I intend to eventually do something similar to him where my less relevant thoughts can be tossed off to the side; maybe anything that exists in parentheses.
 - I enjoy the simplicity of [Nikhil Suresh's blog](https://ludic.mataroa.blog/) and I also now realize at one point my blog index looked identical to his, unintentionally.
 - Honorable mentions: [Yossi Kreinin's blog](https://www.yosefk.com/blog/) and [Yoshua Wuyts' blog](https://blog.yoshuawuyts.com/)
