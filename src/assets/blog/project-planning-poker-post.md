@@ -29,7 +29,7 @@ As a player you can: vote or observe.
 There's also little avatars provided through [dicebear](https://www.dicebear.com/).
 
 ## The Stack
-As I mentioned in [Project: Personal Site + Blog](./project-personal-site), my goto stack consists of:
+As I mentioned in [Project: Personal Site + Blog](./project-personal-site-1), my goto stack consists of:
 - Cloudflare Domain (DNS only)
 - Linode pod
 - Nginx proxy
