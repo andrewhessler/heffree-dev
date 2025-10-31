@@ -173,7 +173,7 @@ fn gen_rss(posts: &[PostMetadata]) -> String {
         .iter()
         .map(|post| {
             let title = post.title.clone();
-            let url = format!("https://heffree.dev/blog/{}", post.path.clone());
+            let url = format!("https://heffree.dev/blog/{}{}", post.path.clone(), ".html");
             let pub_date = DateTime::parse_from_str(
                 &format!("{} 00:00:00 +0000", post.date),
                 "%Y-%m-%d %H:%M:%S %z",
