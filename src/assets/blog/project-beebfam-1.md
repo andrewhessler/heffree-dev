@@ -22,7 +22,7 @@ Not many people like the volume of these intermission tracks, they're generally 
 
 So, most people play in Versus mode and just choose random courses to play, since all the prix (plural of prix) automatically include intermission tracks.
 
-All this to say, we were using a wheel spinnig app and my wife didn't trust it was random so I made us a quick 4-race randomizer in React.
+All this to say, we were using a wheel spinning app and my wife didn't trust it was random so I made us a quick 4-race randomizer in React.
 
 ## Second app - Chore Kanban
 The first app I made with a backend was Chore Kanban. This is just a virtualization of something we used to do on our fridge with magnets until we ran out of steam.
@@ -31,7 +31,7 @@ Now it's all automated and we just have to hit the button when we don't want to 
 If any of the apps have any persistence, they're backed by an axum webserver and a sqlite DB. Same stack as mentioned in my [personal site post](./project-personal-site-1.md).
 
 The data design of this app is just ridiculous;
-I did the old form of vibecoding and just started adding fields as I needed them.
+I did the old form of vibecoding (LLM-less) and just started adding fields as I needed them.
 
 I'll try to describe the design from memory. 
 Each chore has a `last_completed_at` datetime and a `cadence`, the due date is calculated as the `cadence` plus the... I lied, I'm going to look.
@@ -42,7 +42,7 @@ but will always be due on the same day.
 
 If `on_cadence` is false, these are due `frequency_hours` from `last_completed_at` and `last_completed_at` is set to the time the chore is actually completed.
 
-If `frequency_hours` is null then the chore is considered "Ad Hoc" and it just tracks `last_completed_at`, we must mark it due and upcoming.
+If `frequency_hours` is null then the chore is considered "Ad Hoc" and it just tracks `last_completed_at`, we must mark it due and upcoming, I think it nulls `last_completed_at` to be due.
 
 ## Third app - Andrew Inbox
 The third app is just a simple input, simple table. Add entries through the input, delete them by tapping on them.
@@ -66,12 +66,12 @@ Password and cookie key are stored on the server, cookie lives for a year — do
 
 Technically the fifth app is the root that links to all the other apps and handles login.
 It then shares the cookie key with the other apps which block all their mutations against the key.
-All the reads still work without auth because I like to share the site and no one is even going to look at **this** site... meh,
+All the reads still work without auth because I like to share the site and no one is even going to look at *this* site... meh,
 hopefully I don't regret that anytime soon.
 
 ## Structure
 I originally had a repo per webapp but moved them to a monorepo for convenience.
-Each app is hosted on a subdomain because I didn't want the app itself to care about what nested route was theirs to own.
+Each app is hosted on a subdomain because I didn't want the apps themselves to care about what nested route was theirs to own.
 
 ## Small Thoughts
 As you can see, they aren't the most well thought out or robust apps, but they work just fine and we're aware of their idiosyncrasies.
