@@ -121,3 +121,9 @@ ul:has(input[type="checkbox"]) {
   flex-direction: column;
   row-gap: 15px;
 }
+
+@media (width <=768px) {
+  header {
+    flex-direction: column;
+  }
+}
