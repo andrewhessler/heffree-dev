@@ -26,7 +26,7 @@ All this to say, we were using a wheel spinning app and my wife didn't trust it 
 
 ## Second app - Chore Kanban
 The first app I made with a backend was Chore Kanban. This is just a virtualization of something we used to do on our fridge with magnets until we ran out of steam.
-Now it's all automated and we just have to hit the button when we don't want to do the chore!
+Now it's mostly automated and we just have to hit the buttons and do what it tells us!
 
 If any of the apps have any persistence, they're backed by an axum webserver and a sqlite DB. Same stack as mentioned in my [personal site post](./project-personal-site-1.md).
 
