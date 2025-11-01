@@ -135,9 +135,4 @@ ul:has(input[type="checkbox"]) {
   body {
     margin-bottom: 30vh;
   }
-
-  html,
-  body {
-    overscroll-behavior: none;
-  }
 }
