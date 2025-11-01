@@ -126,4 +126,8 @@ ul:has(input[type="checkbox"]) {
   header {
     flex-direction: column;
   }
+
+  body {
+    margin-bottom: 10vh;
+  }
 }
