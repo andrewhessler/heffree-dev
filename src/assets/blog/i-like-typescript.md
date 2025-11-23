@@ -24,3 +24,4 @@ function testingSomeStuff() {
     console.log('hi bud');
 }
 ```
+Hey neat, got code blocks looking nice — totally worth the included JavaScript.
