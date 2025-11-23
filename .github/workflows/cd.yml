@@ -18,11 +18,10 @@ jobs:
           ssh-keyscan -H $HOST > ~/.ssh/known_hosts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.CD_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.CD_KNOWN_HOSTS }}
           HOST: ${{ secrets.LINODE_HOST }}
       - name: Deploy
         env:
           USER: ${{ secrets.LINODE_USER }}
           HOST: ${{ secrets.LINODE_HOST }}
         run: |
-          ssh -i ~/.ssh/private.key $USER@$HOST "source ~/.cargo/env && source ~/.nvm/nvm.sh && nvm use 24 && ~/heffree-dev/build-and-deploy-all.sh"
+          ssh -i ~/.ssh/private.key $USER@$HOST "source ~/.cargo/env && source ~/.nvm/nvm.sh && nvm use 24 && ~/heffree-dev/build-and-deploy.sh"
