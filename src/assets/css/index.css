@@ -62,6 +62,11 @@ h2 {
   font-size: 1.4rem;
 }
 
+code {
+  color: #ffa500;
+  background-color: #000024;
+}
+
 header {
   display: flex;
   justify-content: space-between;
