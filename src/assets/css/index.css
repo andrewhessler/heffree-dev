@@ -48,16 +48,23 @@ h3 {
 
 h2 {
   color: #3fb4cb;
+  margin-bottom: -10px;
 }
 
 h1 {
   color: #d19a66;
   font-size: 1.8rem;
   margin-top: -.1em;
+  margin-bottom: -10px;
 }
 
 h2 {
   font-size: 1.4rem;
+}
+
+code {
+  color: #ffa500;
+  background-color: #000024;
 }
 
 header {
