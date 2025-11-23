@@ -61,7 +61,7 @@ I want to add something that automatically rematches the category so we don't ac
 
 ## Auth
 I hope my auth is full-proof enough. Can definitely be cracked if you get into my pod 
-(edit 2025-11-22: no longer true thanks to bcrypt, though you could just change the key or really do anything if you're in my pod),
+(edit 2025-11-22: no longer true thanks to bcrypt, though you could just change the key or really do anything if you're on the server...),
 but you'll never guess my password!
 
 Password and cookie key are stored on the server, cookie lives for a year — don't social engineer Melissa, please — or even worse, me.
