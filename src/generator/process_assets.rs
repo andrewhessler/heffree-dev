@@ -67,6 +67,9 @@ pub fn process_assets() -> anyhow::Result<()> {
                         .to_string(),
                     content: content.clone(),
                 });
+                metadata
+                    .entry("post".into())
+                    .or_insert_with(|| "true".to_string());
             }
 
             let file_sub_path = entry.path().strip_prefix(ASSETS_DIRECTORY)?;
@@ -81,7 +84,7 @@ pub fn process_assets() -> anyhow::Result<()> {
             // metadata default
             metadata
                 .entry("title".into())
-                .or_insert_with(|| "heffree.dev".into());
+                .or_insert_with(|| "heffree.dev".to_string());
 
             if entry
                 .path()
@@ -90,7 +93,7 @@ pub fn process_assets() -> anyhow::Result<()> {
             {
                 metadata
                     .entry("home".into())
-                    .or_insert_with(|| "exists".into());
+                    .or_insert_with(|| "exists".to_string());
             }
 
             // first pass to apply metadata and insert content
