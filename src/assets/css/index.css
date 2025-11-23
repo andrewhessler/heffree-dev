@@ -42,9 +42,12 @@ p,
 span,
 ul,
 li,
-h2,
 h3 {
   color: #a7aeba;
+}
+
+h2 {
+  color: #3fb4cb;
 }
 
 h1 {
