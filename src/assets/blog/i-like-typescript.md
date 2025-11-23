@@ -19,10 +19,9 @@ What do I know, though? Anyway, just wanted to write a post to say I don't think
 Going to just give Tauri a try, I don't need to be trying the exotic pieces of a language and ecosystem I'm still essentially a newcomer in 
 — or I can at least give myself the leniency to bail out of the exotic bits I have tried.
 
-{{>
 ```typescript
 function testingSomeStuff() {
     console.log('hi bud');
+
 }
 ```
-}}
