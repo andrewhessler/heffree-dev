@@ -12,5 +12,5 @@ cp -r ./dist/* /var/lib/heffree-dev/
 
 sudo systemctl reload nginx
 
-echo "Build, install, and service restart complete."
+echo "Build, install, and service restart complete"
 
