@@ -20,8 +20,8 @@ Going to just give Tauri a try, I don't need to be trying the exotic pieces of a
 — or I can at least give myself the leniency to bail out of the exotic bits I have tried.
 
 ```typescript
-function testingSomeStuff() {
+function testingSomeStuff() 
+{
     console.log('hi bud');
-
 }
 ```
