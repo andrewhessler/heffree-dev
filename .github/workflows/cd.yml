@@ -1,0 +1,28 @@
+name: cd
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create SSH key
+        shell: bash
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key
+          sudo chmod 600 ~/.ssh/private.key
+          ssh-keyscan -H $HOST > ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.CD_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.CD_KNOWN_HOSTS }}
+          HOST: ${{ secrets.LINODE_HOST }}
+      - name: Deploy
+        env:
+          USER: ${{ secrets.LINODE_USER }}
+          HOST: ${{ secrets.LINODE_HOST }}
+        run: |
+          ssh -i ~/.ssh/private.key $USER@$HOST "source ~/.cargo/env && source ~/.nvm/nvm.sh && nvm use 24 && ~/heffree-dev/build-and-deploy-all.sh"
