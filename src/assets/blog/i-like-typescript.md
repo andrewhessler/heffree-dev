@@ -24,4 +24,4 @@ function testingSomeStuff() {
     console.log('hi bud');
 }
 ```
-Hey neat, got code blocks looking nice — totally worth the included JavaScript.
+Hey neat, got code blocks looking nice — totally worth the included JavaScript, though I guess the floodgates are open now.
