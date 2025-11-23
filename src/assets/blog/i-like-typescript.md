@@ -13,10 +13,10 @@ But also I like TypeScript because it's super flexible with a huge ecosystem. An
 I like the idea of being fairly familiar with each of them and using them for what they're good at.
 I think a solid foundation in both will help me leverage a lot of other tools/languages as well.
 It's hard to define what types of programs Rust is good for and I'm not even sure you can say it's necessarily good for a webserver,
-but a webserver is at least a pretty simple frontend for a system's logic — and I think encoding logic is something I can say Rust is good at.
+but a webserver is at least a pretty simple frontend for a system's logic — and I think encoding logic is something I *can* say Rust is good at.
 
 What do I know, though? Anyway, just wanted to write a post to say I don't think I'll be continuing to use Dioxus for my DB Client project.
-Going to just give Tauri a try, I don't need to be trying the exotic pieces of a language and ecosystem I'm still essentially a newcomer in 
+Going to give Tauri a try, I don't need to be trying the exotic pieces of a language and ecosystem I'm still essentially a newcomer in 
 — or I can at least give myself the leniency to bail out of the exotic bits I have tried.
 
 ```typescript
