@@ -15,10 +15,10 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/private.key
           sudo chmod 600 ~/.ssh/private.key
-          ssh-keyscan -H $HOST > ~/.ssh/known_hosts
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.CD_KEY }}
-          HOST: ${{ secrets.LINODE_HOST }}
+          SSH_PRIVATE_KEY: ${{secrets.CD_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.CD_KNOWN_HOSTS}}
       - name: Deploy
         env:
           USER: ${{ secrets.LINODE_USER }}
