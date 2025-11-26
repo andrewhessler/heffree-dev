@@ -16,7 +16,7 @@ It's hard to define what types of programs Rust is good for and I'm not even sur
 but a webserver is at least a pretty simple frontend for a system's logic — and I think encoding logic is something I *can* say Rust is good at.
 
 What do I know, though? Anyway, just wanted to write a post to say I don't think I'll be continuing to use Dioxus for my DB Client project.
-Going to give Tauri a try, I don't need to be trying the exotic pieces of a language and ecosystem I'm still essentially a newcomer in 
+Going to give Tauri a try, I don't need to be trying the exotic pieces of a language and ecosystem that I'm still essentially a newcomer in 
 — or I can at least give myself the leniency to bail out of the exotic bits I have tried.
 
 ```typescript
