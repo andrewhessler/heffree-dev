@@ -1,6 +1,7 @@
 use std::{
     collections::HashMap,
     fs::{self},
+    path::Path,
 };
 
 use chrono::{DateTime, Utc};
@@ -33,83 +34,14 @@ pub fn process_assets() -> anyhow::Result<()> {
         .into_iter()
         .filter_map(|e| e.ok())
     {
-        if entry.path().extension().is_some_and(|v| v == "md") {
-            let markdown = fs::read_to_string(entry.path()).expect("file to be readable");
-            let (meta, meat) = markdown
-                .split_once("-->")
-                .unwrap_or_else(|| ("", &markdown));
-            let mut metadata = parse_metadata(meta);
-
-            let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
-                .map_err(|e| anyhow::anyhow!(e))?;
-
-            // populate post metadata for building the index
-            if entry
-                .path()
-                .parent()
-                .is_some_and(|parent| parent.to_string_lossy().contains("blog"))
-            {
-                posts_for_index.push(PostMetadata {
-                    path: entry
-                        .path()
-                        .file_stem()
-                        .expect("file stem")
-                        .to_string_lossy()
-                        .to_string(),
-                    desc: metadata.get("desc").cloned(),
-                    title: metadata
-                        .get("title")
-                        .expect("title to exist for post")
-                        .to_string(),
-                    date: metadata
-                        .get("date")
-                        .expect("date to exist for post")
-                        .to_string(),
-                    content: content.clone(),
-                });
-                metadata
-                    .entry("post".into())
-                    .or_insert_with(|| "true".to_string());
-            }
-
-            let file_sub_path = entry.path().strip_prefix(ASSETS_DIRECTORY)?;
-            let dist_mirror = format!(
-                "{TARGET_DIRECTORY}/{}",
-                file_sub_path.parent().unwrap().to_str().unwrap()
-            );
-
-            fs::create_dir_all(&dist_mirror)?;
-
-            metadata.entry("content".into()).or_insert_with(|| content);
-            // metadata default
-            metadata
-                .entry("title".into())
-                .or_insert_with(|| "heffree.dev".to_string());
-
-            if entry
-                .path()
-                .to_string_lossy()
-                .contains(&format!("{ASSETS_DIRECTORY}/index.md"))
-            {
-                metadata
-                    .entry("home".into())
-                    .or_insert_with(|| "exists".to_string());
-            }
-
-            // first pass to apply metadata and insert content
-            let html = handlebars.render("layout", &metadata)?;
-            // second pass to populate content values
-            let html_2 = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
-
-            fs::write(
-                format!(
-                    "{dist_mirror}/{}.html",
-                    entry.path().file_stem().unwrap().to_string_lossy()
-                ),
-                html_2,
-            )?;
+        if entry.path().extension().is_some_and(|v| v == "md")
+            && let Some(post_metadata) =
+                process_md(&handlebars, entry.path()).expect("md is processable")
+        {
+            posts_for_index.push(post_metadata);
         }
 
+        // move the actual "assets" and existing html to target directory
         if entry.path().extension().is_some_and(|v| {
             ["css", "html", "pdf", "svg", "jpg", "png", "webm"]
                 .iter()
@@ -137,7 +69,91 @@ pub fn process_assets() -> anyhow::Result<()> {
     Ok(())
 }
 
-/// Parses a collection of string slices by separating them into key-value pairs separated by a ":"
+/// Writes rendered markdown file to an html file, returns PostMetadata if markdown was a blog post
+fn process_md(handlebars: &Handlebars, file_path: &Path) -> anyhow::Result<Option<PostMetadata>> {
+    let mut post_metadata = None;
+
+    let markdown = fs::read_to_string(file_path).expect("file to be readable");
+    let (meta, meat) = markdown
+        .split_once("-->")
+        .unwrap_or_else(|| ("", &markdown));
+    let mut metadata = parse_metadata(meta);
+
+    let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
+        .map_err(|e| anyhow::anyhow!(e))?;
+
+    // populate post metadata for building the index
+    if file_path
+        .parent()
+        .is_some_and(|parent| parent.to_string_lossy().contains("blog"))
+    {
+        post_metadata = Some(PostMetadata {
+            path: file_path
+                .file_stem()
+                .expect("file stem")
+                .to_string_lossy()
+                .to_string(),
+            desc: metadata.get("desc").cloned(),
+            title: metadata
+                .get("title")
+                .expect("title to exist for post")
+                .to_string(),
+            date: metadata
+                .get("date")
+                .expect("date to exist for post")
+                .to_string(),
+            content: content.clone(),
+        });
+        metadata
+            .entry("post".into())
+            .or_insert_with(|| "true".to_string());
+    }
+
+    let file_sub_path = file_path.strip_prefix(ASSETS_DIRECTORY)?;
+    let dist_mirror = format!(
+        "{TARGET_DIRECTORY}/{}",
+        file_sub_path.parent().unwrap().to_str().unwrap()
+    );
+
+    fs::create_dir_all(&dist_mirror)?;
+
+    metadata.entry("content".into()).or_insert_with(|| content);
+    // metadata default
+    metadata
+        .entry("title".into())
+        .or_insert_with(|| "heffree.dev".to_string());
+
+    if file_path
+        .to_string_lossy()
+        .contains(&format!("{ASSETS_DIRECTORY}/index.md"))
+    {
+        metadata
+            .entry("home".into())
+            .or_insert_with(|| "exists".to_string());
+    }
+
+    // first pass to apply metadata and insert content
+    let html = handlebars.render("layout", &metadata)?;
+    // second pass to populate content values
+    let html_2 = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
+
+    fs::write(
+        format!(
+            "{dist_mirror}/{}.html",
+            file_path.file_stem().unwrap().to_string_lossy()
+        ),
+        html_2,
+    )?;
+
+    Ok(post_metadata)
+}
+
+/// Takes a string, e.g.
+/// ```
+/// key1: value1
+/// key2: value2
+/// ```
+/// and parses into a HashMap
 fn parse_metadata(metadata: &str) -> HashMap<String, String> {
     let mut map: HashMap<String, String> = HashMap::new();
     for line in metadata.lines() {
