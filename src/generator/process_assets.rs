@@ -204,17 +204,17 @@ fn gen_rss(posts: &[PostMetadata]) -> String {
 
             format!(
                 r#"<entry>
-    <title>{title}</title>
-    <id>{url}</id>
-    <link href="{url}" />
-    <author>
-        <name>Andrew Hessler</name>
-    </author>
-    <published>{pub_date}</published>
-    <updated>{pub_date}</updated>
-    <summary>{desc}</summary>
-    <content type="html"><![CDATA[{content}]]></content>
-</entry>"#
+                <title>{title}</title>
+                <id>{url}</id>
+                <link href="{url}" />
+                <author>
+                <name>Andrew Hessler</name>
+                </author>
+                <published>{pub_date}</published>
+                <updated>{pub_date}</updated>
+                <summary>{desc}</summary>
+                <content type="html"><![CDATA[{content}]]></content>
+                </entry>"#
             )
         })
         .collect();
@@ -233,7 +233,7 @@ fn gen_rss(posts: &[PostMetadata]) -> String {
         <updated>{now}</updated>
         <language>en</language>
         <author>
-            <name>Andrew Hessler</name>
+        <name>Andrew Hessler</name>
         </author>
         {entries_string}
         </feed>"#
