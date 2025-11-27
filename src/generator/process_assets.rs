@@ -6,8 +6,10 @@ use std::{
 
 use chrono::{DateTime, Utc};
 use handlebars::Handlebars;
+use regex::{Captures, Regex};
 use serde::Serialize;
 use serde_json::json;
+use syntect::{highlighting::ThemeSet, html::highlighted_html_for_string, parsing::SyntaxSet};
 use walkdir::WalkDir;
 
 const ASSETS_DIRECTORY: &str = "./src/assets";
@@ -24,6 +26,10 @@ struct PostMetadata {
 
 pub fn process_assets() -> anyhow::Result<()> {
     let mut handlebars = Handlebars::new();
+    let mut ss = SyntaxSet::load_defaults_newlines().into_builder();
+    ss.add_from_folder("./src/syntaxes/", true)?;
+    let ss = ss.build();
+
     let mut posts_for_index: Vec<PostMetadata> = vec![];
 
     handlebars.register_template_file("layout", "./src/templates/layout.hbs")?;
@@ -36,7 +42,7 @@ pub fn process_assets() -> anyhow::Result<()> {
     {
         if entry.path().extension().is_some_and(|v| v == "md")
             && let Some(post_metadata) =
-                process_md(&handlebars, entry.path()).expect("md is processable")
+                process_md(entry.path(), &handlebars, &ss).expect("md is processable")
         {
             posts_for_index.push(post_metadata);
         }
@@ -70,13 +76,17 @@ pub fn process_assets() -> anyhow::Result<()> {
 }
 
 /// Writes rendered markdown file to an html file, returns PostMetadata if markdown was a blog post
-fn process_md(handlebars: &Handlebars, file_path: &Path) -> anyhow::Result<Option<PostMetadata>> {
+fn process_md(
+    file_path: &Path,
+    handlebars: &Handlebars,
+    ss: &SyntaxSet,
+) -> anyhow::Result<Option<PostMetadata>> {
     let mut post_metadata = None;
 
     let markdown = fs::read_to_string(file_path).expect("file to be readable");
     let (meta, meat) = markdown
         .split_once("-->")
-        .unwrap_or_else(|| ("", &markdown));
+        .unwrap_or_else(|| ("", &markdown)); // means no metadata
     let mut metadata = parse_metadata(meta);
 
     let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
@@ -137,15 +147,33 @@ fn process_md(handlebars: &Handlebars, file_path: &Path) -> anyhow::Result<Optio
     // second pass to populate content values
     let html_2 = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
 
+    let highlighted_html = highlight_code_blocks(&html_2, ss)?;
+
     fs::write(
         format!(
             "{dist_mirror}/{}.html",
             file_path.file_stem().unwrap().to_string_lossy()
         ),
-        html_2,
+        highlighted_html,
     )?;
 
     Ok(post_metadata)
+}
+
+fn highlight_code_blocks(html: &str, ss: &SyntaxSet) -> anyhow::Result<String> {
+    let theme = ThemeSet::get_theme("./src/themes/one-dark.tmTheme")?;
+    let re = Regex::new(r#"(?s)<pre><code class="language-(\w+)">(.*?)</code></pre>"#)?;
+
+    let result = re.replace_all(html, |caps: &Captures| {
+        let lang = &caps[1];
+        let code = html_escape::decode_html_entities(&caps[2]);
+
+        let syntax = ss.find_syntax_by_token(lang).unwrap();
+        let highlighted = highlighted_html_for_string(&code, ss, syntax, &theme).unwrap();
+        highlighted.replace("<pre style=\"", "<pre class=\"code-block\" style=\"")
+    });
+
+    Ok(result.to_string())
 }
 
 /// Takes a string, e.g.

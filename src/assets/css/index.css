@@ -138,6 +138,10 @@ ul:has(input[type="checkbox"]) {
   padding-top: 10px;
 }
 
+.code-block {
+  padding: 1em;
+}
+
 @media (width <=768px) {
   header {
     flex-direction: column;

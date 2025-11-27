@@ -25,3 +25,12 @@ function testingSomeStuff() {
 }
 ```
 Hey neat, got code blocks looking nice — totally worth the included JavaScript, though I guess the floodgates are open now.
+
+Edit 2025-11-26: I was previously using [highlight.js](https://github.com/highlightjs/highlight.js), but why!? 
+Seems weird to have the browser do it when I already know the contents and language type of the code block...
+
+So instead I'm using [syntect](https://github.com/trishume/syntect). Not nearly as convenient, I had to download Sublime just to convert the `tmLanguage` syntax
+file to a `sublime-syntax` file, but at least I get the effect pre-read. 
+Don't even have to worry about any [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content)s.
+Don't have to give a FOUC... 
+and the floodgates are closed again.
