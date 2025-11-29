@@ -22,8 +22,8 @@ And the best thing is that something like it already exists, so I'm already acce
 So...
 
 ## What is it?
-I'm going to be making an MMORPG Simulation which I will be calling Timewaste for now — this name feels almost sardonic, but I swear it's a healthy way for me to view it. 
-As I mentioned, a game called [Erenshor](https://store.steampowered.com/app/2382520/Erenshor/) already exists that does this exact thing.
+I'm going to be making an MMORPG Simulation which I will be calling Timewaste for now — this name feels almost sardonic, but I swear it's a healthy way for me to view it.
+As I mentioned, a game — called [Erenshor](https://store.steampowered.com/app/2382520/Erenshor/) — already exists that does this exact thing.
 
 I'm not sure what my project will look like. I hesitate to call it a game because I really just intend to make the world observable, not to interact with it. But it's definitely a possibility.
 
