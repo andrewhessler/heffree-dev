@@ -41,9 +41,12 @@ a:visited {
 p,
 span,
 ul,
-li,
-h3 {
+li {
   color: #a7aeba;
+}
+
+h3 {
+  color: #0c7c1a;
 }
 
 h2 {
