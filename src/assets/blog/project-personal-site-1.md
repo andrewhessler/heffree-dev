@@ -14,9 +14,7 @@ The rest of the personal site is there to direct people to my socials and stuff.
 
 Anyway, let's get into it!
 
-## Technical Evolution
-
-### The Stack
+## The Stack
 I've been using a pretty consistent stack since I started [Planning Poker](./project-planning-poker.html) &mdash; which I'll do a post on in a little bit. That stack is:
 - Cloudflare domain (DNS only)
 - Linode pod
@@ -31,7 +29,7 @@ With this being just a simple blog, I immediately wanted to drop the React part 
 
 I also don't really need any APIs, so why have the webserver at all? Nginx is a perfectly acceptable webserver, so I'll just use that. I may regret this a little as I think tracing might be a bit simpler if I had a personal webserver to tweak programmatically, but I'm also not pressed about it.
 
-### Where's the Rust?
+## Where's the Rust?
 But how can I live up to the Rust developer stereotypes if I don't try and shoehorn Rust into every project I ever touch?
 
 Before I even got to work on my first real post, I was already getting frustrated with continuously find-and-replacing the nav — and that's on like 7 files. I deleted and readded the blog link every other day depending on how silly I felt having only a placeholder entry.
@@ -41,12 +39,13 @@ I've been following [Armin Ronacher](https://lucumr.pocoo.org/) recently to obse
 I also don't want to make my own templating engine, that's just not what I want to work on right now. Instead I reached for [handlebars](https://handlebarsjs.com/), but the Rust [manifestation](https://crates.io/crates/handlebars). Handlebars is something I've used, I just really can't remember when, which means it must've been at my first job or in college. All I remember is a lot of mustache discussion, which I'm incapable of growing.
 
 Thus the webserver transformed into a static site generator.
-### Obsidian
+
+## Obsidian
 Both the aesthetic design and technical implementation are motivated by my use of Obsidian. I wanted most of my site to be able to exist as markdown files and be rendered to html. There's a [rust crate](https://crates.io/crates/markdown) for that!
 
 I've come to peace with my wanton importing of dependencies. I'm up to a total of 6 (and of course what they rely on); I'd argue `anyhow`, `serde`, and `walkdir` hardly count, but oh well. I'm a little sad about the potentially missed learning opportunities, but I can always go back. I'm going to continue to focus on the things that I see value in.
 
-### Implementation Wrap-up
+## Implementation Wrap-up
 That's where I'm at now:
 - Cloudflare domain (DNS Only)
 - Linode pod
