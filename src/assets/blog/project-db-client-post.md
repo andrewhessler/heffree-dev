@@ -65,5 +65,6 @@ I'll also probably start playing around with some graphics and compiler stuff.
 I'm also hoping to get into some soldering, would be fun to also incorporate some embedded programming.
 
 So that's that, some small toy projects and a KVM is likely my future at the moment. I could also look at transitioning to making my own DB Client neovim plugin... 
+Or heck, I could go and make something useless just for the fun of it and to learn.
 
-I don't know — we'll see how it goes! I'll report back when I decide and likely wait until I have some meaningful progress.
+I don't know — we'll see what happens! I'll report back when I decide and likely wait until I have some meaningful progress.
