@@ -36,7 +36,7 @@ I miss just sitting in a town studying, chatting, hearing about what's going on 
 I don't have any delusion that this will recreate that, but I am interested to see what it does become. I've been reading the reviews of Erenshor and people seem pretty geeked.
 
 I also want to create cool imagery and worlds. And to essentially have a sandbox. I really want to make an amazing atmosphere. 
-My original thought was somewhat of an idle game where a party just went from small zone to small zone pulling different camps.
+My original thought was somewhat of an idle game where a party just went from small zone to small zone pulling different camps (cleverly named "MMO Mob Camping Simulator").
 But why not broaden my goals if the point is to spend my time?
 
 Plus it's perfect! I just became enamored with Tauri so maybe I can use it to create a launcher 2 years from now when I have a plane in a window.
