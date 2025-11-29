@@ -32,7 +32,7 @@ as possible. I'm not sure I understand the full extent of what I'm trying to und
 
 ## Why an MMORPG Simulation?
 I'm pretty nostalgic for the days of WoW and EverQuest. EverCrack was a potential name I considered. I'm so sick of being inundated with media, 
-I miss just sitting in a town studying, chatting, hearing about what's going on in the (game) world. Basically I miss down time. 
+I miss just sitting in a town studying, chatting, hearing about what's going on in the (game) world. Basically I miss downtime. 
 I don't have any delusion that this will recreate that, but I am interested to see what it does become. I've been reading the reviews of Erenshor and people seem pretty geeked.
 
 I also want to create cool imagery and worlds. And to essentially have a sandbox. I really want to make an amazing atmosphere. 
