@@ -64,6 +64,6 @@ anchor while I work on whatever I want in general.
 I'll also probably start playing around with some graphics and compiler stuff.
 I'm also hoping to get into some soldering, would be fun to also incorporate some embedded programming.
 
-So that's that, some small toy projects and a KVM is likely my future at the moment. I could also look at making my own neovim plugin... 
+So that's that, some small toy projects and a KVM is likely my future at the moment. I could also look at transitioning to making my own DB Client neovim plugin... 
 
 I don't know — we'll see how it goes! I'll report back when I decide and likely wait until I have some meaningful progress.
