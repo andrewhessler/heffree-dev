@@ -20,7 +20,7 @@ I didn't really understand managing state with it and I'm just much more comfort
 Tauri is very similar to what I'm doing with [beebfam](./project-beebfam-1.html) where I bundle the static site into the executable, so it was nice and familiar.
 I ended up using a React frontend and 2 routes on the backend: `connect-to-db` and `execute-sql`.
 
-![DB Client UI](../images/vixen-logo.jpg)
+![DB Client UI](../images/db-client-ui.png)
 
 ## Why I'm stopping
 I thought it would be something I really enjoyed working on. I had a goal of supporting all the DBs I use at work (SQL Server, Cosmos, Postgres, Mongo)
