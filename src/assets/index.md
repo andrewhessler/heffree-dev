@@ -8,9 +8,4 @@ My name is Andrew Hessler. I'm a software engineer with {{prof_years}} years of 
 
 I really enjoy continuous learning and I want to be great at what I do.
 
-I primarily use TypeScript, NestJS, Kafka, React, GraphQL, SQL Server, CosmosDB, Kubernetes, some C# — and more! — for my professional full-stack work.
-
-Outside of work, I've been messing around with Rust since the beginning of 2024. 
-Before that I hadn't really created a ton in public, at least not software. Anyway, you can see what that's amounted to on my Github.
-
 [More about me](./blog/about-me-continued.html)
