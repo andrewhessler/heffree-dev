@@ -27,8 +27,8 @@ As I mentioned, a game — called [Erenshor](https://store.steampowered.com/app/
 
 I'm not sure what my project will look like. I hesitate to call it a game because I really just intend to make the world observable, not to interact with it. But it's definitely a possibility.
 
-I'll be creating it in Rust and intend to deep-dive on my dependencies, make my own engine — windowing, rendering, physics, etc. Already the project is doomed, yay! Which is perfect for me. 
-I'm not sure I understand the full extent of what I'm trying to undertake here, but I think that's also the point, right? The point is learning and building and having something that's my own.
+I'll be creating it in Rust and intend to create my own engine — windowing, rendering, physics, etc. Already the project is doomed, yay! Which is perfect for me. I also have a minor goal of bringing in as few crates (maybe 0? probably not)
+as possible. I'm not sure I understand the full extent of what I'm trying to undertake here, but I think that's also the point, right? The point is learning and building and having something that's my own.
 
 ## Why an MMORPG Simulation?
 I'm pretty nostalgic for the days of WoW and EverQuest. EverCrack was a potential name I considered. I'm so sick of being inundated with media, 
