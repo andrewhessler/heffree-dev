@@ -1,8 +1,8 @@
-<!--
+---
 title: Project: Planning Poker (Post-mortem)
 desc: A recap of a project I worked on for 7 months
 date: 2025-10-06
--->
+---
 # Agile Ante
 It's crazy that I've been working on this for 7 months — I counted and it was 43 days of those 7 months, but still. You can find the repo here: [agile-ante](https://github.com/heffree/agile-ante)
 

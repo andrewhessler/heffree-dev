@@ -1,9 +1,9 @@
-<!--
+---
 title: I like TypeScript
 desc: and I don't want to use Rust for my frontend
 date: 2025-11-22
 author: Andrew Hessler
--->
+---
 # I like TypeScript
 It's pretty great. If anything because it shows me how valuable the compile-time guarantees of Rust are.
 In turn, Rust shows me how to leverage the build-time guarantees of TypeScript.

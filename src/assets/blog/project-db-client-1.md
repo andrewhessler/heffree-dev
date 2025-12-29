@@ -1,8 +1,8 @@
-<!--
+---
 title: Project: DB Client - UI and Name Thoughts
 desc: No more Iced, thanks Rust GUI Survey
 date: 2025-10-10
--->
+---
 # DB Client - UI and Name Thoughts
 I've put a bit of time into the DB Client. Mostly stressing about which UI framework I'm going to use.
 

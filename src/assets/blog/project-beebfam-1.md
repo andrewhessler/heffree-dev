@@ -1,9 +1,9 @@
-<!--
+---
 title: Project: Beebfam Site
 desc: A place for me and mine
 date: 2025-10-30
 author: Andrew Hessler
--->
+---
 # Project Beebfam Site
 I'm pretty interested in making a little hub app for my wife and I to use. 
 Specifically a mobile app, but I don't have a personal Mac to sign things for our iPhones.
