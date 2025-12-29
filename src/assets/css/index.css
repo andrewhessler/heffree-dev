@@ -111,7 +111,7 @@ ul:has(input[type="checkbox"]) {
   color: #d19a66 !important;
 }
 
-.blog-date {
+.post-metadata {
   font-size: .8rem;
   float: right;
 }

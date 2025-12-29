@@ -1,8 +1,8 @@
-<!--
+---
 title: Timewaste
 desc: Finally, something to hobby on that feels right
 date: 2025-11-29
--->
+---
 # Timewaste
 Last post (all the way yesterday) I said:
 > So that's that, some small toy projects and a KVM is likely my future at the moment. I could also look at transitioning to making my own DB Client neovim plugin... 

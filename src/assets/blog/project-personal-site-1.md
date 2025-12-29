@@ -1,8 +1,8 @@
-<!--
+---
 title: Project: Personal Site + Blog
 desc: A rundown of what went into getting this blog up and running
 date: 2025-10-05
--->
+---
 # Personal Site + Blog
 I created this blog for a few reasons: 
 - I like writing (and typing). 

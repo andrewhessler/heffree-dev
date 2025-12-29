@@ -19,6 +19,7 @@ const TARGET_DIRECTORY: &str = "./dist";
 struct PostMetadata {
     path: String,
     title: String,
+    tags: Vec<String>,
     desc: Option<String>,
     date: String,
     content: String,
@@ -84,10 +85,11 @@ fn process_md(
     let mut post_metadata = None;
 
     let markdown = fs::read_to_string(file_path).expect("file to be readable");
-    let (meta, meat) = markdown
-        .split_once("-->")
-        .unwrap_or_else(|| ("", &markdown)); // means no metadata
-    let mut metadata = parse_metadata(meta);
+    let mut iter = markdown.splitn(3, "---\n").skip(1);
+
+    let meta = iter.next().unwrap_or("");
+    let meat = iter.next().unwrap_or("No content");
+    let (mut metadata, tags) = parse_metadata(meta);
 
     let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
         .map_err(|e| anyhow::anyhow!(e))?;
@@ -98,6 +100,7 @@ fn process_md(
         .is_some_and(|parent| parent.to_string_lossy().contains("blog"))
     {
         post_metadata = Some(PostMetadata {
+            tags: tags.clone(),
             path: file_path
                 .file_stem()
                 .expect("file stem")
@@ -143,7 +146,12 @@ fn process_md(
     }
 
     // first pass to apply metadata and insert content
-    let html = handlebars.render("layout", &metadata)?;
+    let mut json_metadata: HashMap<String, serde_json::Value> = metadata
+        .into_iter()
+        .map(|(key, val)| (key, json!(val)))
+        .collect();
+    json_metadata.insert("tags".to_string(), json!(tags));
+    let html = handlebars.render("layout", &json_metadata)?;
     // second pass to populate content values
     let html_2 = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
 
@@ -181,17 +189,30 @@ fn highlight_code_blocks(html: &str, ss: &SyntaxSet) -> anyhow::Result<String> {
 /// key1: value1
 /// key2: value2
 /// ```
-/// and parses into a HashMap
-fn parse_metadata(metadata: &str) -> HashMap<String, String> {
+/// and parses into a HashMap, also handles parsing tags into a vec
+fn parse_metadata(metadata: &str) -> (HashMap<String, String>, Vec<String>) {
     let mut map: HashMap<String, String> = HashMap::new();
+    let mut tags: Vec<String> = vec![];
     for line in metadata.lines() {
         if line.contains(":") {
             let (key, value) = line.split_once(":").expect("contains to work right?");
-            map.entry(key.to_string())
-                .or_insert_with(|| value.trim().to_string());
+            if key == "tags" {
+                println!("value: {value:?}");
+                tags = value
+                    .trim()
+                    .replace("[", "")
+                    .replace("]", "")
+                    .split(",")
+                    .map(|val| val.trim().to_string().replace("\"", ""))
+                    .collect();
+                println!("tags: {tags:?}");
+            } else {
+                map.entry(key.to_string())
+                    .or_insert_with(|| value.trim().to_string());
+            }
         }
     }
-    map
+    (map, tags)
 }
 
 fn gen_blikidex(posts: &[PostMetadata], handlebars: Handlebars) -> String {

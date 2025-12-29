@@ -1,8 +1,8 @@
-<!--
+---
 title: Project: DB Client (Pre-natal)
 desc: Really quick thoughts on my next project
 date: 2025-10-07
--->
+---
 # DB Client
 Finally! This is what this blogging mini-marathon has all been for. Saying goodbye to [Planning Poker](./project-planning-poker-post.html) and welcoming in the DB Client.
 

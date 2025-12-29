@@ -1,8 +1,8 @@
-<!--
+---
 title: More About Me 
 desc: Just some additional information about me if you want it
 date: 2025-10-04
--->
+---
 # More About Me
 I guess this will be my first **real** blog post. I'm told I'm not actually the greatest writer who ever lived, so I'm going to cheat with my first entry and make it auto-biographical. Not too biographical, though... more self-referential? Just to say I'm not going to bother to write out my life story — I already did that in a draft.
 

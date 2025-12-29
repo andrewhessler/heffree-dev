@@ -1,8 +1,8 @@
-<!--
+---
 title: Project: DB Client (Post-mortem)
 desc: I thought I could do it, but unfortunately, no
 date: 2025-11-28
--->
+---
 # Done with dbrs
 I'm moving on from my latest main project. I was going to make a DB Client in preparation for the retirement of Azure Data Studio.
 Unfortunately, I don't think I'll be continuing with it. It's a shame because I really liked the name — instead of redeeming the name De Beers it will continue
