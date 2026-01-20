@@ -8,7 +8,7 @@ author: Andrew Hessler
 I don't know why I'm combining these into one post, but they're happening concurrently and they're both acronyms so let's just roll with it.
 
 ## RSI
-One thing about me is I like typing. I'm not **amazing** at it, there are people who type at speeds that absolutely floor me, but I love doing it and working on it.
+One thing about me is I like typing (neovim btw). I'm not **amazing** at it, there are people who type at speeds that absolutely floor me, but I love doing it and working on it.
 
 ### Ergonomics
 On July 12th 2024, I started learning the alternative keyboard layout Colemak in an attempt to "ensure the health of my hands" (and somewhat to relearn touch typing from scratch).
@@ -63,5 +63,5 @@ I'm learning more about myself, what's important to me, and what will improve my
 Along those lines, if this were a chronic pain, I'd like to imagine I'm in a place where I could accept that and modify my life as necessary.
 
 ## SICP
-Well, now that we're through all that, let's talk about what I've been focused on most while letting my hands rest.
+Well, now that we're through all that, let's talk about what I've been focused on most while letting my hands rest:
 "Structure and Interpretation of Computer Programs" by Harold Abelson and Gerald Jay Sussman with Julie Sussman.
