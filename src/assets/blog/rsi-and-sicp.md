@@ -50,6 +50,11 @@ by Dale Carnegie while reading random posts on Eli Bendersky's blog where he rec
 Serendipitously, I only found his blog because I was looking up others' experiences with SICP.
 Not often I get to use that word and I probably still shouldn't because it just sounds like I'm using word of the day toilet paper, oh well.
 
+This book improved my peace of mind tenfold.
+I've found I'm pretty susceptible to the placebo effect, most of my illnesses are immediately more manageable the moment I take medicine. I don't want to be too
+self-evaluating here, but all this to say the book advised doing things that I knew to be helpful, but wasn't practicing to solve my immediate problems. The moment
+I started practicing them, I felt some very immediate relief.
+
 My physical therapist also recommended a book, "The Pain Management Workbook" by Rachel Zoffness,
 which basically reinforces the idea that your body affects your mind affects your environment affects your body. The biopsychosocial cycle.
 
@@ -58,9 +63,9 @@ I typed up to this point for like an hour and a half straight! I feel some soren
 The best thing for me is to keep using my hands and building strength. Just have to make sure I don't injure them again, haha.
 I'm hopeful I'll be back to near normal within a couple months.
 
-I've honestly been having somewhat of a self-renaissance since July/August of 2024. I see all of this as just another facet of that.
-I'm learning more about myself, what's important to me, and what will improve my life.
-Along those lines, if this were a chronic pain, I'd like to imagine I'm in a place where I could accept that and modify my life as necessary.
+I've honestly been having somewhat of a self-renaissance since July/August of 2024. I see all of this as just another branch of that.
+I'm learning more about myself, what's important to me, and what will increase my happiness.
+Along those lines, if this were a chronic pain, I'd like to imagine I'm in a place where I could accept that and modify my life and mindset as necessary.
 
 ## SICP
 Well, now that we're through all that, let's talk about what I've been focused on most while letting my hands rest:
