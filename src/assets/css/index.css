@@ -52,23 +52,22 @@ blockquote>p {
 h3 {
   color: #0c7c1a;
   margin-bottom: -10px;
+  font-size: 2.0rem;
 }
 
 h2 {
   color: #3fb4cb;
   margin-bottom: -10px;
+  font-size: 2.2rem;
 }
 
 h1 {
   color: #d19a66;
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   margin-top: -.1em;
   margin-bottom: -10px;
 }
 
-h2 {
-  font-size: 1.4rem;
-}
 
 code {
   color: #ffa500;
