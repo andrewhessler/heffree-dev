@@ -100,7 +100,7 @@ if solving of them says anything about my aptitude, but the dopamine does hit wh
 
 I've also had the thought occasionally of whether or not it's a valuable way to spend my time. Luckily, as of very recently, I don't listen to those thoughts
 anymore. I'm excited about the book. I've never really had a great handle on recursion and I don't remember working on compilers much in school, 
-just some shell stuff I'd consider in the same vein. I can tell it's already telling me to think about problems in a different way.
+just some shell stuff I'd consider in the same vein.
 
 It's interesting though, I saw a recent video where [Harold Abelson explained](https://www.youtube.com/watch?v=OgRFOjVzvm0) the reason for moving to teaching in Python and he said something along the lines of:
 we used to engineer building up abstractions, using smaller building blocks to build up big things. Now we have these massive libraries that we kind of poke and prod
