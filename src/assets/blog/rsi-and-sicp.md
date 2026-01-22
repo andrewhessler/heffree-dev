@@ -19,7 +19,7 @@ I actually found a blog post in my notes that I don't think I ever posted, writt
 I intended to post it on Reddit, but I think I figured no one would really care, haha.
 I put in my notes: "Decided to give up on \[\[Typing Blog Post\]\] because it's mostly just bragging".
 And now I've actually started a blog, crazy. As far as I can tell, the post is actually complete, maybe I'll post it on here.
-Anyway, it mentions that my hands were sore during the transition, especially my pinkies, but it mostly cleared up within a month.
+Anyway, it mentions that my hands were sore during the transition, especially my pinkies, but it mostly cleared up within the month.
 But I did have some concerns that the switch would be long-term detrimental for my hands. As far as I can tell though, it wasn't, and my hands went back to normal.
 
 On September 6th 2024, I got my first ergonomic keyboard, the ZSA Moonlander. It took some getting used to and I took a small hit to my typing speed.
