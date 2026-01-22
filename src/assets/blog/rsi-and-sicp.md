@@ -13,7 +13,7 @@ One thing about me is I like typing (neovim btw). I'm not **amazing** at it, the
 ### Ergonomics
 On July 12th 2024, I started learning the alternative keyboard layout Colemak in an attempt to "ensure the health of my hands" (and somewhat to relearn touch typing from scratch).
 I used a few different resources, typing constantly every day, learning my n-grams, and eventually pushing my WPM up.
-I was doing most of this practice on my — looking at my email, apparently **new** — laptop from System76.
+I was doing most of this practice on my — looking at my email, apparently **new** at this time — laptop from System76, so just a standard laptop keyboard.
 
 I actually found a blog post in my notes that I don't think I ever posted, written on August 12th, a month later.
 I intended to post it on Reddit, but I think I figured no one would really care, haha.
@@ -33,6 +33,8 @@ It got really bad in early December, to the point that I started looking for an 
 I landed on the Glove80. Mostly because I thought my body preferred negative tilt and that would just fix everything.
 On December 5th 2025, I received my Glove80 and got to setting it up. I started using my thumbs for backspace and shift. It felt absolutely amazing to type on and...
 I overdid it. I typed so much I actually ended up fully injuring my hands and had to completely scale back keyboard usage.
+Specifically, it felt like the base of my thumb was bruised, the back of my forearms were in a lot of pain,
+and I think I was also feeling what's called tennis elbow?
 
 ### Recovering
 For work I switched over to doing everything with voice dictation and LLMs. 
@@ -46,17 +48,18 @@ I've been hearing plenty of RSI war stories that are resolved by diet-and-exerci
 
 Something else that seems pivotally important to recovery is some amount of optimism. Concern is good, worry is unproductive.
 I ended up picking up "How to Stop Worrying and Start Living"
-by Dale Carnegie while reading random posts on Eli Bendersky's blog where he recommended it.
+by Dale Carnegie while reading random posts on [Eli Bendersky's blog](https://eli.thegreenplace.net/) where he recommended it.
 Serendipitously, I only found his blog because I was looking up others' experiences with SICP.
 Not often I get to use that word and I probably still shouldn't because it just sounds like I'm using word of the day toilet paper, oh well.
 
 This book improved my peace of mind tenfold.
 I've found I'm pretty susceptible to the placebo effect, most of my illnesses are immediately more manageable the moment I take medicine. I don't want to be too
 self-evaluating here, but all this to say the book advised doing things that I knew to be helpful, but wasn't practicing to solve my immediate problems. The moment
-I started practicing them, I felt some very immediate relief.
+I started practicing them, I felt relief. I'm not cured of my worry or anything, but I see a path forward to fight it — or maybe accept it?
 
 My physical therapist also recommended a book, "The Pain Management Workbook" by Rachel Zoffness,
 which basically reinforces the idea that your body affects your mind affects your environment affects your body. The biopsychosocial cycle.
+This provides a lot of motivation to find some kind of harmony in as many facets of my life as I can.
 
 ### Moving Forward
 I typed up to this point for like an hour and a half straight! I feel some soreness in my forearms, but I don't fear that pain and I know it isn't permanent.
@@ -71,11 +74,12 @@ Along those lines, if this were a chronic pain, I'd like to imagine I'm in a pla
 Well, now that we're through all that, let's talk about what I've been focused on most while letting my hands rest:
 "Structure and Interpretation of Computer Programs" by Harold Abelson and Gerald Jay Sussman with Julie Sussman.
 
-I'm only through the first chapter, so not done or anything, but I'd like to celebrate that success all the same. It's been a good use of my time while my hands
+I'm only through the first chapter, so not done or anything, but I'd like to celebrate that success all the same. It's been a mostly enjoyable use of my time while my hands
 have been out of commission. Writing hasn't been nearly as painful as typing, plus it's been pretty fun to treat my computer usage like I'm timesharing in the 80s.
 Write out my answers for a group of exercises in my notebook, enter them to see if they work, adjust if needed.
 
-I started going through SICP because of bigboxSWE's video about 3 books you should read. One of his recommendations was Martin Kleppmann's
+I started going through SICP because of [bigboxSWE's video](https://www.youtube.com/watch?v=0Phlq0kmImE)
+about 3 books you should read. One of his recommendations was Martin Kleppmann's
 "Designing Data-Intensive Applications", which I had already read and loved, so trusted the other two recommendations by proximity. The third recommendation — if
 you're curious and don't want to check out the video — was "Computer Systems: A Programmer's Perspective" by Randal E. Bryant and David R. O'Hallaron.
 
@@ -83,11 +87,12 @@ I swear I read the the third book in college, but I can't be sure, so I'll just 
 maybe some Reddit comments here and there mentioned it, but I don't think it was on my radar of seminal CS material. 
 I decided I'd give it a try as an example for myself of how much I've learned, that I'm capable, and how much more I can learn.
 
-The beginning was pretty rough. For many of the beginning exercises I felt like I had little idea to start and I was constantly not giving myself enough time
+The beginning was pretty rough. For many of the early exercises I felt like I had little idea to start and I was constantly not giving myself enough time
 to explore solutions. The coin counting stuff was especially frustrating, but I eventually caught on that a lot of the problems were solved by manipulating
-the input or the algorithm in some way to make it cooperate. And then failed a bunch more when I figured that out.
+the input or the algorithm in some way to make it cooperate. And then I failed a bunch more even after figuring that out.
 
-After all the mind-bending, loosely math-concept adjacent exercises, we got into "here's a math concept, I'm going to tell you an abstraction — made of abstractions we've recently built —
+After all the mind-bending, loosely math-concept adjacent exercises, near the end of chapter 1 we get into 
+"here's a math concept, I'm going to tell you an abstraction — made of abstractions we've recently built —
 that let's us do the math, convert my words into a function," 
 i.e. "To `smooth`, `average` f(x - dx), f(x), and f(x + dx), then for an `n-fold smooth` combine the previously created `repeated` function."
 It's like an eye-rolling amount of "let me flex what we can do with all these cool abstractions and also we haven't even shown you lists yet!" So I don't know
@@ -97,10 +102,18 @@ I've also had the thought occasionally of whether or not it's a valuable way to 
 anymore. I'm excited about the book. I've never really had a great handle on recursion and I don't remember working on compilers much in school, 
 just some shell stuff I'd consider in the same vein. I can tell it's already telling me to think about problems in a different way.
 
-It's interesting though, I saw a recent video where Harold Abelson explained the reason for moving to teaching in Python and he said something along the lines of:
+It's interesting though, I saw a recent video where [Harold Abelson explained](https://www.youtube.com/watch?v=OgRFOjVzvm0) the reason for moving to teaching in Python and he said something along the lines of:
 we used to engineer building up abstractions, using smaller building blocks to build up big things. Now we have these massive libraries that we kind of poke and prod
 and figure out if they can fit our use case. Essentially, the smallest building blocks became too large to build them from scratch. Hey, maybe LLMs change that.
-Maybe at some point we'll be able to generate large, robust, well-tested building blocks tailored to our use cases. Seems kind of inefficient and error-prone though.
+Maybe at some point we'll be able to generate large, robust, well-tested building blocks tailored to our use cases. 
+Seems kind of inefficient and error-prone though, maybe models will cache library implementations and then tweak them as necessary.
 
 I'm excited to get into chapter 2 so I can finally have access to lists. Looking at a bunch of Haskell-based explanations
 to learn about monads has prepared me for recursive lists, I'm so ready, I hope.
+
+If anything, even if I don't go forward with SICP, I'm thankful for randomly stumbling on Eli Bendersky's blog and finding the recommendation for the Worry book.
+Worry has been a constant factor in my life and that book not only helped me, but has also led me to some other resources — such as philosophy — to help make sense
+of the world and help me navigate my way through. And it's funny because the book feels so conman-written adjacent, I don't know... it helped anyway. I suppose
+I'd recommend it too if worry is hampering your life. But maybe also just a therapist would work.
+
+I'll probably take a small Timewaste break before I dive into chapter 2.
