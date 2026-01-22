@@ -1,7 +1,7 @@
 ---
 title: RSI and SICP
 desc: pain in my forearms, gain in my brain
-date: 2026-01-19
+date: 2026-01-22
 author: Andrew Hessler
 ---
 # RSI and SICP
