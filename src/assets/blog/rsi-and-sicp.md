@@ -3,6 +3,7 @@ title: RSI and SICP
 desc: pain in my forearms, gain in my brain
 date: 2026-01-22
 author: Andrew Hessler
+tags: ["llm", "rsi", "sicp", "philosophy", "typing"]
 ---
 # RSI and SICP
 I don't know why I'm combining these into one post, but they're happening concurrently and they're both acronyms so let's just roll with it.
