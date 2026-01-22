@@ -109,9 +109,9 @@ Maybe at some point we'll be able to generate large, robust, well-tested buildin
 Seems kind of inefficient and error-prone though, maybe models will cache library implementations and then tweak them as necessary.
 
 I'm excited to get into chapter 2 so I can finally have access to lists. Looking at a bunch of Haskell-based explanations
-to learn about monads has prepared me for recursive lists, I'm so ready, I hope.
+to learn about monads has prepared me for recursive lists, I'm so ready... I think... I hope, or maybe I don't hope, maybe I want it to be extra difficult?
 
-If anything, even if I don't go forward with SICP, I'm thankful for randomly stumbling on Eli Bendersky's blog and finding the recommendation for the Worry book.
+If anything, even if I don't go forward with SICP, I'm thankful for randomly stumbling on Eli Bendersky's blog and finding the recommendation for the worry book.
 Worry has been a constant factor in my life and that book not only helped me, but has also led me to some other resources — such as philosophy — to help make sense
 of the world and help me navigate my way through. And it's funny because the book feels so conman-written adjacent, I don't know... it helped anyway. I suppose
 I'd recommend it too if worry is hampering your life. But maybe also just a therapist would work.
