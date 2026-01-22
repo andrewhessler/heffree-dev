@@ -47,7 +47,7 @@ I was already working on rehauling my diet-and-exercise and had been stretching 
 I've been hearing plenty of RSI war stories that are resolved by diet-and-exercise and I'm definitely starting to believe it.
 
 Something else that seems pivotally important to recovery is some amount of optimism. Concern is good, worry is unproductive.
-I ended up picking up "How to Stop Worrying and Start Living"
+I eventually picked up "How to Stop Worrying and Start Living"
 by Dale Carnegie while reading random posts on [Eli Bendersky's blog](https://eli.thegreenplace.net/) where he recommended it.
 Serendipitously, I only found his blog because I was looking up others' experiences with SICP.
 Not often I get to use that word and I probably still shouldn't because it just sounds like I'm using word of the day toilet paper, oh well.
