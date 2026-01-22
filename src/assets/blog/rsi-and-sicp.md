@@ -97,7 +97,7 @@ After all the mind-bending, loosely math-concept adjacent exercises, near the en
 that let's us do the math, convert my words into a function," 
 i.e. "To `smooth`, `average` f(x - dx), f(x), and f(x + dx), then for an `n-fold smooth` combine the previously created `repeated` function."
 It's like an eye-rolling amount of "let me flex what we can do with all these cool abstractions and also we haven't even shown you lists yet!" So I don't know
-if solving of them says anything about my aptitude, but the dopamine does hit when it runs correctly.
+if solving them says anything about my aptitude, but the dopamine does hit when it runs correctly.
 
 I've also had the thought occasionally of whether or not it's a valuable way to spend my time. Luckily, as of very recently, I don't listen to those thoughts
 anymore. I'm excited about the book. I've never really had a great handle on recursion and I don't remember working on compilers much in school, 
