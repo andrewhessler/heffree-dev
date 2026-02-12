@@ -50,7 +50,7 @@ pub fn process_assets() -> anyhow::Result<()> {
 
         // move the actual "assets" and existing html to target directory
         if entry.path().extension().is_some_and(|v| {
-            ["css", "html", "pdf", "svg", "jpg", "png", "webm"]
+            ["css", "js", "html", "pdf", "svg", "jpg", "png", "webm"]
                 .iter()
                 .any(|c| *c == v.to_str().unwrap())
         }) {
