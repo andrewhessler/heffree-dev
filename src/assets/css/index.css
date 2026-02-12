@@ -117,6 +117,14 @@ ul:has(input[type="checkbox"]) {
   float: right;
 }
 
+@media (width <=768px) {
+  .post-metadata {
+    float: none;
+    display: block;
+    margin-bottom: 0.5em;
+  }
+}
+
 .tiny-me {
   float: right;
   border-radius: 8px;
@@ -146,7 +154,7 @@ ul:has(input[type="checkbox"]) {
   display: flex;
   flex-direction: column;
   row-gap: 15px;
-  padding-top: 10px;
+  padding-top: 25px;
 }
 
 .code-block {
