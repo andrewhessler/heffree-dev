@@ -73,16 +73,12 @@ float splash(vec2 uv, float grid_size, float seed, float rate) {
   vec2 local = fract(scaled);
 
   for (int dx = -1; dx <= 1; dx++) {
-    for (int dy = -1; dy <= 1; dy++) {
+    {
+      int dy = 0;
       vec2 neighbor = cell + vec2(float(dx), float(dy));
       float cell_h = hash2(neighbor + seed);
 
       if (cell_h > 0.6) continue;
-
-      vec2 splash_pos = vec2(
-        hash2(neighbor * 1.3 + seed + 10.0),
-        hash2(neighbor * 2.7 + seed + 20.0)
-      );
 
       float cycle_len = 0.4 + 0.6 * hash2(neighbor * 3.1 + seed + 30.0);
       float time_offset = hash2(neighbor * 4.9 + seed + 40.0) * cycle_len;
@@ -90,6 +86,11 @@ float splash(vec2 uv, float grid_size, float seed, float rate) {
       float life_phase = t / cycle_len;
 
       if (life_phase > 0.7) continue;
+
+      vec2 splash_pos = vec2(
+        hash2(neighbor * 1.3 + seed + 10.0),
+        hash2(neighbor * 2.7 + seed + 20.0)
+      );
       float normalized_life = life_phase / 0.7;
 
       vec2 delta = (local - splash_pos + vec2(float(dx), float(dy)));
@@ -179,10 +180,8 @@ void main() {
   if (ground_zone > 0.001) {
     float s1 = ground_splash(uv, aspect, 18.0, 0.0, 1.8);
     float s2 = ground_splash(uv, aspect, 14.0, 500.0, 2.2);
-    float s3 = ground_splash(uv, aspect, 22.0, 1000.0, 1.5);
-    float s4 = ground_splash(uv, aspect, 10.0, 1500.0, 2.6);
 
-    float splash_total = s1 * 0.5 + s2 * 0.4 + s3 * 0.35 + s4 * 0.3;
+    float splash_total = s1 * 0.5 + s2 * 0.4;
     splash_total *= ground_zone;
 
     // Blend splash color + lantern
@@ -203,10 +202,10 @@ void main() {
   vec3 rain_cool_3 = vec3(0.80, 0.85, 0.90);
   vec3 rain_warm = LANTERN_COLOR * 1.3;
 
-  float r1 = rain_layer(uv_aspect, 100.0, 6.0, 0.06, 0.8, wind * 0.32, 0.0);
-  vec3 r1_color = mix(rain_cool_1, rain_warm, lantern_inf * 2.0);
-  float r1_bright = 0.10 + lantern_inf * 0.45;
-  col += r1_color * r1 * r1_bright;
+  // float r1 = rain_layer(uv_aspect, 100.0, 6.0, 0.06, 0.8, wind * 0.32, 0.0);
+  // vec3 r1_color = mix(rain_cool_1, rain_warm, lantern_inf * 2.0);
+  // float r1_bright = 0.10 + lantern_inf * 0.45;
+  // col += r1_color * r1 * r1_bright;
 
   float r2 = rain_layer(uv_aspect, 80.0, 8.0, 0.07, 1.2, wind * 0.37, 200.0);
   vec3 r2_color = mix(rain_cool_2, rain_warm, lantern_inf * 2.0);
