@@ -194,6 +194,10 @@ void main() {
     col += splash_color * splash_total * splash_bright;
   }
 
+  // Fade rain out near ground
+  float rain_fade_2 = smoothstep(0.0, 0.04, uv.y);
+  float rain_fade_3 = smoothstep(0.0, 0.12, uv.y);
+
   // Rain layer colors
   vec3 rain_cool_1 = vec3(0.45, 0.50, 0.55);
   vec3 rain_cool_2 = vec3(0.45, 0.50, 0.55);
@@ -208,12 +212,12 @@ void main() {
   float r2 = rain_layer(uv_aspect, 60.0, 8.5, 0.15, 0.7, 0.09, 200.0);
   vec3 r2_color = mix(rain_cool_2, rain_warm, lantern_inf * 2.0);
   float r2_bright = 0.08 + lantern_inf * 0.40;
-  col += r2_color * r2 * r2_bright;
+  col += r2_color * r2 * r2_bright * rain_fade_2;
 
-  float r3 = rain_layer(uv_aspect, 50.0, 6.5, 0.04, 0.4, 0.15, 700.0);
+  float r3 = rain_layer(uv_aspect, 120.0, 9.5, 0.08, 0.4, 0.15, 700.0);
   vec3 r3_color = mix(rain_cool_3, rain_warm, lantern_inf * 2.0);
   float r3_bright = 0.18 + lantern_inf * 0.55;
-  col += r3_color * r3 * r3_bright;
+  col += r3_color * r3 * r3_bright * rain_fade_3;
 
   gl_FragColor = vec4(col, 1.0);
 }
