@@ -188,7 +188,7 @@ void main() {
     // Blend splash color + lantern
     vec3 splash_base = vec3(0.75, 0.80, 0.85);
     vec3 splash_warm = LANTERN_COLOR * 1.2;
-    vec3 splash_color = mix(splash_base, splash_warm, lantern_inf * 4.00);
+    vec3 splash_color = mix(splash_base, splash_warm, lantern_inf * 4.0);
 
     // Boost splash brightness near lantern
     float splash_bright = 0.3 + lantern_inf * 1.7;
@@ -204,17 +204,17 @@ void main() {
   vec3 rain_warm = LANTERN_COLOR * 1.3;
 
   float r1 = rain_layer(uv_aspect, 100.0, 6.0, 0.06, 0.8, wind * 0.32, 0.0);
-  vec3 r1_color = mix(rain_cool_1, rain_warm, lantern_inf * 0.7);
+  vec3 r1_color = mix(rain_cool_1, rain_warm, lantern_inf * 2.0);
   float r1_bright = 0.10 + lantern_inf * 0.45;
   col += r1_color * r1 * r1_bright;
 
   float r2 = rain_layer(uv_aspect, 80.0, 8.0, 0.07, 1.2, wind * 0.37, 200.0);
-  vec3 r2_color = mix(rain_cool_2, rain_warm, lantern_inf * 0.7);
+  vec3 r2_color = mix(rain_cool_2, rain_warm, lantern_inf * 2.0);
   float r2_bright = 0.08 + lantern_inf * 0.40;
   col += r2_color * r2 * r2_bright;
 
   float r3 = rain_layer(uv_aspect, 50.0, 8.0, 0.04, 0.8, wind * 0.42, 300.0);
-  vec3 r3_color = mix(rain_cool_3, rain_warm, lantern_inf * 0.6);
+  vec3 r3_color = mix(rain_cool_3, rain_warm, lantern_inf * 2.0);
   float r3_bright = 0.18 + lantern_inf * 0.55;
   col += r3_color * r3 * r3_bright;
 
