@@ -23,4 +23,8 @@
     {{#if home}}<img class="tiny-me" src="./images/tiny-me-128.png" />{{/if}}
 {{> indent}}
   </main>
+  {{#if home}}
+  <canvas id="rain-canvas"></canvas>
+  <script src="/js/rain.js"></script>
+  {{/if}}
 </body>
