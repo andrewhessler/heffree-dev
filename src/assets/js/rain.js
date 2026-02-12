@@ -178,8 +178,8 @@ void main() {
   float ground_zone = 1.0 - smoothstep(0.05, 0.15, uv.y);
 
   if (ground_zone > 0.001) {
-    float s1 = ground_splash(uv, aspect, 18.0, 0.0, 1.8);
-    float s2 = ground_splash(uv, aspect, 14.0, 500.0, 2.2);
+    float s1 = ground_splash(uv, aspect, 18.0, 0.0, 2.3);
+    float s2 = ground_splash(uv, aspect, 14.0, 500.0, 3.2);
 
     float splash_total = s1 * 0.5 + s2 * 0.4;
     splash_total *= ground_zone;
