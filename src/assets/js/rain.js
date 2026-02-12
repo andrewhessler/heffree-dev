@@ -289,7 +289,7 @@ const uRes = gl.getUniformLocation(program, 'u_res');
 const timeOffset = Math.random() * 10;
 
 function frame(t) {
-  gl.uniform1f(uTime, t * 0.001 + timeOffset)
+  gl.uniform1f(uTime, (t * 0.001 + timeOffset) % 1000)
   gl.uniform2f(uRes, canvas.width, canvas.height);
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   requestAnimationFrame(frame);
