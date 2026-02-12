@@ -9,7 +9,7 @@ void main() {
 `;
 
 const fsSource = `
-precision mediump float;
+precision highp float;
 
 varying vec2 v_uv;
 uniform float u_time;
