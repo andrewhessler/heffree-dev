@@ -205,12 +205,12 @@ void main() {
   // float r1_bright = 0.10 + lantern_inf * 0.45;
   // col += r1_color * r1 * r1_bright;
 
-  float r2 = rain_layer(uv_aspect, 80.0, 8.0, 0.07, 1.2, 0.37, 200.0);
+  float r2 = rain_layer(uv_aspect, 80.0, 7.5, 0.07, 0.6, 0.37, 200.0);
   vec3 r2_color = mix(rain_cool_2, rain_warm, lantern_inf * 2.0);
   float r2_bright = 0.08 + lantern_inf * 0.40;
   col += r2_color * r2 * r2_bright;
 
-  float r3 = rain_layer(uv_aspect, 50.0, 8.0, 0.04, 0.8, 0.42, 300.0);
+  float r3 = rain_layer(uv_aspect, 50.0, 6.5, 0.04, 0.4, 0.42, 300.0);
   vec3 r3_color = mix(rain_cool_3, rain_warm, lantern_inf * 2.0);
   float r3_bright = 0.18 + lantern_inf * 0.55;
   col += r3_color * r3 * r3_bright;
