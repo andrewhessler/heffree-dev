@@ -31,7 +31,7 @@ float noise(float p){
 }
 
 const vec2 LANTERN_POS = vec2(0.06, 0.25);
-const vec3 LANTERN_COLOR = vec3(0.9, 0.65, 0.2);
+const vec3 LANTERN_COLOR = vec3(0.98, 0.60, 0.15);
 
 float lantern_influence(vec2 uv, float aspect) {
   vec2 diff = uv - LANTERN_POS;
@@ -60,7 +60,7 @@ vec3 background(vec2 uv, float aspect) {
   diff.x *= aspect;
   float lantern_dist = length(diff * vec2(1.0, 1.6));
   col += LANTERN_COLOR * 0.55 * exp(-lantern_dist * 15.0);
-  col += LANTERN_COLOR * 0.25 * exp(-lantern_dist * 3.5);
+  col += LANTERN_COLOR * 0.35 * exp(-lantern_dist * 3.5);
 
   return col;
 }
@@ -188,10 +188,10 @@ void main() {
     // Blend splash color + lantern
     vec3 splash_base = vec3(0.75, 0.80, 0.85);
     vec3 splash_warm = LANTERN_COLOR * 1.2;
-    vec3 splash_color = mix(splash_base, splash_warm, lantern_inf * 0.85);
+    vec3 splash_color = mix(splash_base, splash_warm, lantern_inf * 4.00);
 
     // Boost splash brightness near lantern
-    float splash_bright = 0.3 + lantern_inf * 0.7;
+    float splash_bright = 0.3 + lantern_inf * 1.7;
     col += splash_color * splash_total * splash_bright;
   }
 
