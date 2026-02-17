@@ -33,9 +33,8 @@ float noise(float p){
 const vec2 LANTERN_POS = vec2(0.06, 0.25);
 const vec3 LANTERN_COLOR = vec3(0.98, 0.60, 0.15);
 
-float lantern_influence(vec2 uv, float aspect) {
+float lantern_influence(vec2 uv) {
   vec2 diff = uv - LANTERN_POS;
-  diff.x *= aspect; // correct for aspect ratio
   float dist = length(diff);
 
   // Warm glow falloff — strong near, fading far
@@ -44,20 +43,17 @@ float lantern_influence(vec2 uv, float aspect) {
   return inner * 0.8 + outer * 0.35;
 }
 
-vec3 background(vec2 uv, float aspect) {
+vec3 background(vec2 uv) {
   // colors
-  vec3 sky_top = vec3(0.10, 0.10, 0.155);
-  vec3 sky_mid = vec3(0.094, 0.094, 0.141);
-  vec3 tree = vec3(0.05, 0.08, 0.04);
+  vec3 sky = vec3(0.10, 0.10, 0.155);
   vec3 ground = vec3(0.094, 0.094, 0.141);
 
   // gradient
-  vec3 col = mix(ground, sky_mid, smoothstep(0.0, 0.4, uv.y));
-  col = mix(col, sky_top, smoothstep(0.4, 1.0, uv.y));
+  vec3 col = ground;
+  col = mix(col, sky, smoothstep(0.4, 1.0, uv.y));
 
   // lantern glow on background
   vec2 diff = uv - LANTERN_POS;
-  diff.x *= aspect;
   float lantern_dist = length(diff * vec2(1.0, 1.6));
   col += LANTERN_COLOR * 0.55 * exp(-lantern_dist * 15.0);
   col += LANTERN_COLOR * 0.35 * exp(-lantern_dist * 3.5);
@@ -116,9 +112,9 @@ float splash(vec2 uv, float grid_size, float seed, float rate) {
   return clamp(intensity, 0.0, 1.0);
 }
 
-float ground_splash(vec2 uv, float aspect, float grid_size, float seed, float rate) {
+float ground_splash(vec2 uv, float grid_size, float seed, float rate) {
   float perspective_squash = 2.5 + (1.0 - uv.y) * 2.0;
-  vec2 ground_uv = vec2(uv.x * aspect, uv.y * perspective_squash);
+  vec2 ground_uv = vec2(uv.x, uv.y * perspective_squash);
   return splash(ground_uv, grid_size, seed, rate);
 }
 
@@ -169,17 +165,17 @@ float rain_layer(vec2 uv, float density, float speed, float thickness, float len
 void main() {
   vec2 uv = v_uv;
   float aspect = u_res.x / u_res.y;
-  vec2 uv_aspect = vec2(uv.x * aspect, uv.y);
+  uv = vec2(uv.x * aspect, uv.y); // aspectified
 
-  vec3 col = background(uv, aspect);
+  vec3 col = background(uv);
 
-  float lantern_inf = lantern_influence(uv, aspect);
+  float lantern_inf = lantern_influence(uv);
 
   float ground_zone = 1.0 - smoothstep(0.05, 0.15, uv.y);
 
   if (ground_zone > 0.001) {
-    float s1 = ground_splash(uv, aspect, 18.0, 0.0, 2.3);
-    float s2 = ground_splash(uv, aspect, 14.0, 500.0, 3.2);
+    float s1 = ground_splash(uv, 18.0, 0.0, 2.3);
+    float s2 = ground_splash(uv, 14.0, 500.0, 3.2);
 
     float splash_total = s1 * 0.5 + s2 * 0.4;
     splash_total *= ground_zone;
@@ -199,22 +195,16 @@ void main() {
   float rain_fade_3 = smoothstep(0.0, 0.12, uv.y);
 
   // Rain layer colors
-  vec3 rain_cool_1 = vec3(0.45, 0.50, 0.55);
   vec3 rain_cool_2 = vec3(0.45, 0.50, 0.55);
   vec3 rain_cool_3 = vec3(0.80, 0.85, 0.90);
   vec3 rain_warm = LANTERN_COLOR * 1.3;
 
-  // float r1 = rain_layer(uv_aspect, 100.0, 6.0, 0.06, 0.8, 0.32, 0.0);
-  // vec3 r1_color = mix(rain_cool_1, rain_warm, lantern_inf * 2.0);
-  // float r1_bright = 0.10 + lantern_inf * 0.45;
-  // col += r1_color * r1 * r1_bright;
-
-  float r2 = rain_layer(uv_aspect, 60.0, 8.5, 0.15, 0.7, 0.09, 200.0);
+  float r2 = rain_layer(uv, 60.0, 8.5, 0.15, 0.7, 0.09, 200.0);
   vec3 r2_color = mix(rain_cool_2, rain_warm, lantern_inf * 2.0);
   float r2_bright = 0.08 + lantern_inf * 0.40;
   col += r2_color * r2 * r2_bright * rain_fade_2;
 
-  float r3 = rain_layer(uv_aspect, 120.0, 9.5, 0.08, 0.4, 0.15, 700.0);
+  float r3 = rain_layer(uv, 120.0, 9.5, 0.08, 0.4, 0.15, 700.0);
   vec3 r3_color = mix(rain_cool_3, rain_warm, lantern_inf * 2.0);
   float r3_bright = 0.18 + lantern_inf * 0.55;
   col += r3_color * r3 * r3_bright * rain_fade_3;
