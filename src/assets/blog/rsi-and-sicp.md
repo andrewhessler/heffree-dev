@@ -103,7 +103,7 @@ I've also had the thought occasionally of whether or not it's a valuable way to 
 anymore. I'm excited about the book. I've never really had a great handle on recursion and I don't remember working on compilers much in school, 
 just some shell stuff I'd consider in the same vein.
 
-It's interesting though, I saw a recent video where [Harold Abelson explained](https://www.youtube.com/watch?v=OgRFOjVzvm0) the reason for moving to teaching in Python and he said something along the lines of:
+It's interesting though, I saw a recent video where [Gerald Sussman explained](https://www.youtube.com/watch?v=OgRFOjVzvm0) the reason for moving to teaching in Python and he said something along the lines of:
 we used to engineer building up abstractions, using smaller building blocks to build up big things. Now we have these massive libraries that we kind of poke and prod
 and figure out if they can fit our use case. Essentially, the smallest building blocks became too large to build them from scratch. Hey, maybe LLMs change that.
 Maybe at some point we'll be able to generate large, robust, well-tested building blocks tailored to our use cases. 
