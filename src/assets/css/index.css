@@ -46,6 +46,10 @@ li {
   color: #a7aeba;
 }
 
+p {
+  line-height: 1.5;
+}
+
 blockquote>p {
   color: gray;
 }
