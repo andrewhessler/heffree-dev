@@ -19,7 +19,7 @@
   </header>
 
   <main>
-    {{#if date}}<span class="post-metadata">{{date}}{{#if tags}} | {{#each tags}} {{this}} {{/each}}{{/if}}</span>{{/if}}
+    {{#if date}}<div class="metadata-wrapper"><span class="post-metadata">{{date}}{{#if tags}} | {{#each tags}} {{this}} {{/each}}{{/if}}</span></div>{{/if}}
     {{#if home}}<img class="tiny-me" src="./images/tiny-me-128.png" />{{/if}}
 {{> indent}}
   </main>
