@@ -161,6 +161,10 @@ ul:has(input[type="checkbox"]) {
   padding: 1em;
 }
 
+.metadata-wrapper {
+  margin-bottom: 25px;
+}
+
 #rain-canvas {
   position: fixed;
   top: 0;
