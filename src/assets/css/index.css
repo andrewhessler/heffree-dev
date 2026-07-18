@@ -10,7 +10,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 1.1rem;
+  font-size: 1.0rem;
 }
 
 main {
@@ -44,6 +44,10 @@ span,
 ul,
 li {
   color: #a7aeba;
+}
+
+p {
+  line-height: 1.5;
 }
 
 blockquote>p {
@@ -159,6 +163,10 @@ ul:has(input[type="checkbox"]) {
 
 .code-block {
   padding: 1em;
+}
+
+.metadata-wrapper {
+  margin-bottom: 25px;
 }
 
 #rain-canvas {
