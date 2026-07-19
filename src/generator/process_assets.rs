@@ -6,6 +6,7 @@ use std::{
 
 use chrono::{DateTime, Utc};
 use handlebars::Handlebars;
+use markdown::{CompileOptions, Constructs, ParseOptions};
 use regex::{Captures, Regex};
 use serde::Serialize;
 use serde_json::json;
@@ -83,16 +84,40 @@ fn process_md(
     ss: &SyntaxSet,
 ) -> anyhow::Result<Option<PostMetadata>> {
     let mut post_metadata = None;
+    let mut sidenote_map: HashMap<String, String> = HashMap::new();
 
     let markdown = fs::read_to_string(file_path).expect("file to be readable");
     let mut iter = markdown.splitn(3, "---\n").skip(1);
 
-    let meta = iter.next().unwrap_or("");
-    let meat = iter.next().unwrap_or("No content");
-    let (mut metadata, tags) = parse_metadata(meta);
+    let archetype = iter.next().unwrap_or("");
+    let meat = iter
+        .next()
+        .unwrap_or_else(|| panic!("{file_path:?} content should exist"));
+    let (mut metadata, tags) = parse_metadata(archetype);
 
-    let content = markdown::to_html_with_options(meat, &markdown::Options::gfm())
-        .map_err(|e| anyhow::anyhow!(e))?;
+    let re = Regex::new(r"\[\^(.*)\]:(.*)").expect("footnote content regex should be valid");
+    let meat = re.replace_all(meat, |caps: &regex::Captures| {
+        let id = &caps[1];
+        let text = &caps[2];
+        sidenote_map
+            .entry(id.to_string())
+            .or_insert_with(|| text.trim().to_string());
+        println!("{sidenote_map:?}");
+        ""
+    });
+
+    let markdown_options = markdown::Options {
+        parse: ParseOptions {
+            constructs: Constructs {
+                gfm_footnote_definition: false,
+                ..Default::default()
+            },
+            ..Default::default()
+        },
+        ..markdown::Options::gfm()
+    };
+    let content =
+        markdown::to_html_with_options(&meat, &markdown_options).map_err(|e| anyhow::anyhow!(e))?;
 
     // populate post metadata for building the index
     if file_path
@@ -153,9 +178,24 @@ fn process_md(
     json_metadata.insert("tags".to_string(), json!(tags));
     let html = handlebars.render("layout", &json_metadata)?;
     // second pass to populate content values
-    let html_2 = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
+    let html = handlebars.render_template(&html, &json!({"prof_years": 8}))?;
 
-    let highlighted_html = highlight_code_blocks(&html_2, ss)?;
+    // replace inline footnotes
+    let re = Regex::new(r"\[\^([^\]]*)\]").expect("inline footnote regex should be healthy");
+    let mut count = 0;
+    let html = re.replace_all(&html, |cap: &regex::Captures| {
+        let id = &cap[1];
+        let text = sidenote_map
+            .get(id)
+            .unwrap_or_else(|| panic!("{id} footnote content should exist in map"));
+        count += 1;
+        let count_string = count.to_string().trim().to_owned();
+        format!(
+            r#"<label for="{id}" class="sidenote-number">{count_string}</label><input type="checkbox" id={id} class="margin-toggle" /><span class="sidenote"><label for="{id}" class="sidenote-number">{count_string}</label>{text}</span>"#
+        )
+    });
+
+    let highlighted_html = highlight_code_blocks(&html, ss)?;
 
     fs::write(
         format!(
@@ -197,7 +237,6 @@ fn parse_metadata(metadata: &str) -> (HashMap<String, String>, Vec<String>) {
         if line.contains(":") {
             let (key, value) = line.split_once(":").expect("contains to work right?");
             if key == "tags" {
-                println!("value: {value:?}");
                 tags = value
                     .trim()
                     .replace("[", "")
@@ -205,7 +244,6 @@ fn parse_metadata(metadata: &str) -> (HashMap<String, String>, Vec<String>) {
                     .split(",")
                     .map(|val| val.trim().to_string().replace("\"", ""))
                     .collect();
-                println!("tags: {tags:?}");
             } else {
                 map.entry(key.to_string())
                     .or_insert_with(|| value.trim().to_string());

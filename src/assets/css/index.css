@@ -116,6 +116,36 @@ ul:has(input[type="checkbox"]) {
   color: #d19a66 !important;
 }
 
+.sidenote-number {
+  color: #d19a66;
+  cursor: pointer;
+  font-size: 0.75rem;
+  vertical-align: super;
+  margin-right: -0.3em;
+}
+
+.sidenote-number:hover {
+  text-decoration: underline;
+}
+
+.margin-toggle {
+  display: none;
+}
+
+.margin-toggle:checked+.sidenote {
+  display: block;
+  float: left;
+  left: 1rem;
+  clear: both;
+  width: 95%;
+  margin: 1rem 2.5%;
+  position: relative;
+}
+
+.margin-toggle:not(:checked)+.sidenote {
+  display: none;
+}
+
 .post-metadata {
   font-size: .8rem;
   float: right;
