@@ -108,7 +108,7 @@ fn process_md(
         ""
     });
 
-    // replace @@img tags
+    // replace @@gimg tags
     let re = Regex::new(r"@@gimg:([^\s]*)").expect("img bucket regex should be valid");
     let meat = re.replace_all(&meat, |caps: &regex::Captures| {
         let name = &caps[1];
