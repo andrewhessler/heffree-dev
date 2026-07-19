@@ -109,13 +109,14 @@ fn process_md(
     });
 
     // replace @@img tags
-    let re = Regex::new(r"@@img:([^\s]*)").expect("img bucket regex should be valid");
+    let re = Regex::new(r"@@gimg:([^\s]*)").expect("img bucket regex should be valid");
     let meat = re.replace_all(&meat, |caps: &regex::Captures| {
         let name = &caps[1];
         let alt_text = name.replace("_", "");
-        format!(r"![{alt_text}]({BUCKET_PREFIX}{name})")
+        format!(r"[![{alt_text}]({BUCKET_PREFIX}{name})]({BUCKET_PREFIX}{name})")
     });
 
+    // currently completely for the purpose of disabling gfm footnote generation
     let markdown_options = markdown::Options {
         parse: ParseOptions {
             constructs: Constructs {
