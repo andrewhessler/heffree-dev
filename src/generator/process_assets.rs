@@ -15,6 +15,7 @@ use walkdir::WalkDir;
 
 const ASSETS_DIRECTORY: &str = "./src/assets";
 const TARGET_DIRECTORY: &str = "./dist";
+const BUCKET_PREFIX: &str = "https://heffree-dev.us-ord-10.linodeobjects.com/";
 
 #[derive(Serialize)]
 struct PostMetadata {
@@ -95,7 +96,8 @@ fn process_md(
         .unwrap_or_else(|| panic!("{file_path:?} content should exist"));
     let (mut metadata, tags) = parse_metadata(archetype);
 
-    let re = Regex::new(r"\[\^(.*)\]:(.*)").expect("footnote content regex should be valid");
+    // gather sidenote content
+    let re = Regex::new(r"\[\^(.*)\]:(.*)").expect("sidenote content regex should be valid");
     let meat = re.replace_all(meat, |caps: &regex::Captures| {
         let id = &caps[1];
         let text = &caps[2];
@@ -104,6 +106,14 @@ fn process_md(
             .or_insert_with(|| text.trim().to_string());
         println!("{sidenote_map:?}");
         ""
+    });
+
+    // replace @@img tags
+    let re = Regex::new(r"@@img:([^\s]*)").expect("img bucket regex should be valid");
+    let meat = re.replace_all(&meat, |caps: &regex::Captures| {
+        let name = &caps[1];
+        let alt_text = name.replace("_", "");
+        format!(r"![{alt_text}]({BUCKET_PREFIX}{name})")
     });
 
     let markdown_options = markdown::Options {
