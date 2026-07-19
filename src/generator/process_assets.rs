@@ -6,7 +6,7 @@ use std::{
 
 use chrono::{DateTime, Utc};
 use handlebars::Handlebars;
-use markdown::{CompileOptions, Constructs, ParseOptions};
+use markdown::{Constructs, ParseOptions};
 use regex::{Captures, Regex};
 use serde::Serialize;
 use serde_json::json;
